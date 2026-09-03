@@ -41,7 +41,7 @@ export default function Scena2()
         position={[-20, 0, 0]} 
         triggerKey1="h" 
         type={1} 
-        sound="volime1.wav" 
+        sound="cula.wav" 
         color={[1.00, 0.20, 0.05]} 
         intensity={5.5} 
       />
@@ -73,9 +73,9 @@ export default function Scena2()
         height={14} 
         depth={1} 
         position={[-12, 0, 0]} 
-        triggerKey1="f" 
+        triggerKey1="k" 
         type={2} 
-        sound="volime1.wav" 
+        sound="dobra1.wav" 
         color={[0.08, 2.25, 0.42]} 
         intensity={3.5} 
       />
@@ -109,9 +109,9 @@ export default function Scena2()
         height={4} 
         depth={1133}  
         position={[11, 0, 0]} 
-        triggerKey1="j" 
+        triggerKey1="a" 
         type={4} 
-        sound="imate2.wav" 
+        sound="oo.wav" 
         color={[0.98, 0.75, 0.42]} 
         intensity={3.5} 
       />
@@ -128,9 +128,9 @@ export default function Scena2()
         height={14} 
         depth={1433} 
         position={[4, 0, 0]} 
-        triggerKey1="j" 
+        triggerKey1="a" 
         type={2} 
-        sound="imate2.wav" 
+        sound="oo.wav" 
         color={[0.98, 0.75, 0.42]} 
         intensity={5.5} 
       />
@@ -138,20 +138,20 @@ export default function Scena2()
 
 
       <Explosion 
-        count={1111} 
-        maxRadius={31.35} 
-        minSpeed={12.4} 
-        maxSpeed={11.5} 
+          count={11} 
+        maxRadius={6.35} 
+        minSpeed={1.4} 
+        maxSpeed={2.5} 
         spread={35} 
-        width={8} 
+        width={18} 
         height={14} 
-        depth={1433} 
+        depth={11} 
         position={[21, 0, 0]} 
         triggerKey1="j" 
-        type={3} 
-        sound="imate2.wav" 
+        type={4} 
+        sound="oo1.wav" 
         color={[0.08, 0.25, 0.42]} 
-        intensity={5.5} 
+        intensity={15.5} 
       />
 
     </group>
