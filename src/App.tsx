@@ -5,6 +5,8 @@ import { AudioProvider } from "./audio/AudioProvider";
 import Scena1 from "./components/Scena1";
 import Scena2 from "./components/Scena2";
 import Scena3 from "./components/Scena3";
+import Scena4 from "./components/Scena4";
+import Scena5 from "./components/Scena5";
 /*import Scena2 from "./components/Scena2";
 import Scena3 from "./components/Scena3";
 
@@ -44,6 +46,8 @@ function SceneCanvas() {
           
           <Route path="/scena2" element={<Scena2 />} />
           <Route path="/scena3" element={<Scena3 />} />
+          <Route path="/scena4" element={<Scena4 />} />
+          <Route path="/scena5" element={<Scena5 />} />
           
         </Routes>
 
