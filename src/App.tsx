@@ -4,6 +4,7 @@ import { KeyboardProvider } from "./providers/Keyboard";
 import { AudioProvider } from "./audio/AudioProvider";
 import Scena1 from "./components/Scena1";
 import Scena2 from "./components/Scena2";
+import Scena3 from "./components/Scena3";
 /*import Scena2 from "./components/Scena2";
 import Scena3 from "./components/Scena3";
 
@@ -42,7 +43,8 @@ function SceneCanvas() {
           <Route path="/" element={<Scena1 />} />
           
           <Route path="/scena2" element={<Scena2 />} />
-         
+          <Route path="/scena3" element={<Scena3 />} />
+          
         </Routes>
 
       </KeyboardProvider>

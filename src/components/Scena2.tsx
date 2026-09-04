@@ -58,7 +58,7 @@ export default function Scena2()
         position={[-32, 0, 0]} 
         triggerKey1="f" 
         type={2} 
-        sound="volime1.wav" 
+        sound="dio.wav" 
         color={[0.08, 0.25, 0.42]} 
         intensity={5.5} 
       />
@@ -92,7 +92,7 @@ export default function Scena2()
         position={[-3, 0, 0]} 
         triggerKey1="f" 
         type={2} 
-        sound="volime1.wav" 
+        sound="dio.wav" 
         color={[0.8, 3.25, 0.42]} 
         intensity={1.5} 
       />
