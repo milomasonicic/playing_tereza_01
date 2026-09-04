@@ -58,7 +58,24 @@ export default function Explosion({
 
 }: ExplosionProps){
 
-    
+
+/// ovo je use M funkcija 
+/*
+const mesh = useRef<THREE.Mesh>(null);
+const movingUp = useRef(false);
+const rigRef = useRef<THREE.Group>(null);
+const rigRef1 = useRef<THREE.Group>(null);
+const movingRig = useRef(false);
+const kick = useRef(false);
+const tox = useRef(false);
+const leftKey1 = useRef(false);
+
+const rotating = useRef(false);
+const rightKey1 = useRef(false);
+const wildSpin = useRef(false);
+*/
+
+   /// ovo je je particle sistem  
   const pointsRef =
     useRef<THREE.Points>(null);
 
@@ -79,6 +96,16 @@ export default function Explosion({
 
   audio.playSound(sound);
 };
+
+// use m
+     
+useM(
+
+  pointsRef, 
+  exploded
+ 
+);
+
   
 const particles = useMemo(() => {
 
@@ -126,6 +153,11 @@ const particles = useMemo(() => {
       let x = 0;
       let y = 0;
       let z = 0;
+
+
+      //svi use m pa ce mi nesto trebat i hope
+
+
 
 
       // ======================================
@@ -667,6 +699,7 @@ materialRef.current.uIntensity = intensity;
 
   return (
     <>
+   
      <points
       ref={pointsRef}
       position={position}
@@ -689,11 +722,8 @@ materialRef.current.uIntensity = intensity;
       />
 
 
-      
 
-    </points>
-
-      
+    </points>      
     </>
   );
 }
