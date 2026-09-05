@@ -85,6 +85,10 @@ const wildSpin = useRef(false);
   const exploded =
     useRef(false);
 
+  const active =
+  useRef(0);
+
+
   const keyDown =
     useRef(false);
 
@@ -136,7 +140,7 @@ const particles = useMemo(() => {
                 const theta = Math.random() * Math.PI * 2;
         const phi = Math.acos(2 * Math.random() - 1);
 
-        const spreadAmount = 0.25;
+        const spreadAmount = 0.025;
 
         let x = Math.sin(phi) * Math.cos(theta);
         let y = Math.sin(phi) * Math.sin(theta);
@@ -151,8 +155,8 @@ const particles = useMemo(() => {
         );
 
         return {
-            x: x / length,
-            y: y / length,
+            x: x / width,
+            y: y / height,
             z: z / length,
         };
 
@@ -409,7 +413,29 @@ particles.colors[i3 + 2] =
 
       materialRef.current.uColor = color;
 
-materialRef.current.uIntensity = intensity;
+      materialRef.current.uIntensity = intensity;
+
+      if (keyDown.current) {
+      
+          // tipka pritisnuta → pali shader
+          active.current += delta * 1.0;
+      
+        } else {
+      
+          // tipka puštena → gasi shader
+          active.current -= delta * 1.0;
+      
+        }
+      
+        active.current = THREE.MathUtils.clamp(
+          active.current,
+          0,
+          1
+        );
+      
+        materialRef.current.uActive =
+          active.current;
+      
 
     }
 
@@ -600,6 +626,7 @@ useM(
 
       <twistMaterial11
         ref={materialRef}
+        transparent
       />
 
 

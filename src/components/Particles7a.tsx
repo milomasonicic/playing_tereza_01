@@ -3,7 +3,7 @@ import { useMemo, useRef, useCallback, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import { TwistMaterial11 } from "../shaders/shader02";
 import { useAudio } from "../audio/AudioProvider";
-import { useM } from "../movement/useMov";
+import { useM } from "../movement/useMov_scena4";
 
 interface ExplosionProps {
 
@@ -31,7 +31,7 @@ interface ExplosionProps {
   intensity?: number;
 }
 
-export default function Explosion({
+export default function Explosion999({
 
   count = 100,
 
@@ -88,6 +88,7 @@ const wildSpin = useRef(false);
       const active =
   useRef(0);
 
+
   const keyDown =
     useRef(false);
 
@@ -99,16 +100,6 @@ const wildSpin = useRef(false);
 
   audio.playSound(sound);
 };
-
-// use m
-     
-useM(
-
-  pointsRef, 
-  exploded
- 
-);
-
   
 const particles = useMemo(() => {
 
@@ -146,155 +137,18 @@ const particles = useMemo(() => {
 
     const getDirection =
     useCallback(() => {
+     const theta = Math.random() * Math.PI * 2;
 
-      const side =
-        Math.floor(
-          Math.random() * 4
-        );
+            const y = (Math.random() - 0.5) * 2;
 
+            const radius =
+                0.2 + Math.abs(y) * 1.5;
 
-      let x = 0;
-      let y = 0;
-      let z = 0;
-
-
-      //svi use m pa ce mi nesto trebat i hope
-
-
-
-
-      // ======================================
-      // GORE
-      // ======================================
-
-      if (
-        side === 0
-      ) {
-
-        y =
-          height;
-
-        x =
-          (Math.random() - 0.5) *
-          spread *
-          width;
-
-        z =
-          (Math.random() - 0.5) *
-          spread *
-          depth;
-
-      }
-
-
-      // ======================================
-      // DOLE
-      // ======================================
-
-      else if (
-        side === 1
-      ) {
-
-        y =
-          -height;
-
-        x =
-          (Math.random() - 0.5) *
-          spread *
-          width;
-
-        z =
-          (Math.random() - 0.5) *
-          spread *
-          depth;
-
-      }
-
-
-      // ======================================
-      // LIJEVO
-      // ======================================
-
-      else if (
-        side === 2
-      ) {
-
-        x =
-          -width;
-
-        y =
-          (Math.random() - 0.5) *
-          spread *
-          height;
-
-        z =
-          (Math.random() - 0.5) *
-          spread *
-          depth;
-
-      }
-
-
-      // ======================================
-      // DESNO
-      // ======================================
-
-      else {
-
-        x =
-          width;
-
-        y =
-          (Math.random() - 0.5) *
-          spread *
-          height;
-
-        z =
-          (Math.random() - 0.5) *
-          spread *
-          depth;
-
-      }
-
-
-      // ======================================
-      // NORMALIZE
-      // ======================================
-
-      const length =
-        Math.sqrt(
-          x * x +
-          y * y +
-          z * z
-        );
-
-
-      if (
-        length === 0
-      ) {
-
-        return {
-          x: 0,
-          y: 1,
-          z: 0,
-        };
-
-      }
-
-
-      return {
-
-        x:
-          x / length,
-
-        y:
-          y / length,
-
-        z:
-          z / length,
-
-      };
-
+            return {
+                x: Math.cos(theta) * radius,
+                y: Math.tan(theta) * radius,
+                z: Math.sin(theta) * radius,
+            }
     }, [
       spread,
       width,
@@ -529,43 +383,42 @@ particles.colors[i3 + 2] =
     // SHADER
     // ========================================
 
-      if (
-          materialRef.current
-        ) {
-    
-          materialRef.current.uTime +=
-            delta;
-    
-          
-          materialRef.current.uType = type;
-    
-          materialRef.current.uColor = color;
-    
-    materialRef.current.uIntensity = intensity;
-    
-     if (keyDown.current) {
-    
-        // tipka pritisnuta → pali shader
-        active.current += delta * 1.0;
-    
-      } else {
-    
-        // tipka puštena → gasi shader
-        active.current -= delta * 1.0;
-    
-      }
-    
-      active.current = THREE.MathUtils.clamp(
-        active.current,
-        0,
-        1
-      );
-    
-      materialRef.current.uActive =
-        active.current;
-    
-        }
-    
+    if (
+      materialRef.current
+    ) {
+
+      materialRef.current.uTime +=
+        delta;
+
+      
+      materialRef.current.uType = type;
+
+      materialRef.current.uColor = color;
+
+materialRef.current.uIntensity = intensity;
+
+ if (keyDown.current) {
+
+    // tipka pritisnuta → pali shader
+    active.current += delta * 1.0;
+
+  } else {
+
+    // tipka puštena → gasi shader
+    active.current -= delta * 1.0;
+
+  }
+
+  active.current = THREE.MathUtils.clamp(
+    active.current,
+    0,
+    1
+  );
+
+  materialRef.current.uActive =
+    active.current;
+
+    }
 
 
     // ========================================
@@ -719,12 +572,23 @@ particles.colors[i3 + 2] =
 
 
 
+// use m
+     
+useM(
+
+  pointsRef, 
+  exploded,
+  particles.velocities
+ 
+);
+
 
 
 
   return (
     <>
-   
+    <group position={[7.5, 0, 0]}>
+      
      <points
       ref={pointsRef}
       position={position}
@@ -749,7 +613,9 @@ particles.colors[i3 + 2] =
 
 
 
-    </points>      
+    </points>  
+    
+    </group>    
     </>
   );
 }

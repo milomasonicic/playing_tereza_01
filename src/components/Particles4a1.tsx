@@ -3,7 +3,7 @@ import { useMemo, useRef, useCallback, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import { TwistMaterial11 } from "../shaders/shader02";
 import { useAudio } from "../audio/AudioProvider";
-import { useM } from "../movement/useMov";
+import { useM } from "../movement/useMov_scena4";
 
 interface ExplosionProps {
 
@@ -31,7 +31,7 @@ interface ExplosionProps {
   intensity?: number;
 }
 
-export default function Explosion({
+export default function ExplosionPodvr({
 
   count = 100,
 
@@ -85,8 +85,9 @@ const wildSpin = useRef(false);
   const exploded =
     useRef(false);
 
-      const active =
+  const active =
   useRef(0);
+
 
   const keyDown =
     useRef(false);
@@ -99,16 +100,6 @@ const wildSpin = useRef(false);
 
   audio.playSound(sound);
 };
-
-// use m
-     
-useM(
-
-  pointsRef, 
-  exploded
- 
-);
-
   
 const particles = useMemo(() => {
 
@@ -146,154 +137,29 @@ const particles = useMemo(() => {
 
     const getDirection =
     useCallback(() => {
+                const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
 
-      const side =
-        Math.floor(
-          Math.random() * 4
+        const spreadAmount = 0.025;
+
+        let x = Math.sin(phi) * Math.tan(width);
+        let y = Math.sin(theta) * Math.sin(height);
+        let z = Math.cos(phi);
+
+        x += (Math.random() - 0.15) * spreadAmount;
+        y += (Math.random() - 0.15) * spreadAmount;
+        z += (Math.random() - 0.15) * spreadAmount;
+
+        const length = Math.sqrt(
+            x * x + y * y + z * z
         );
-
-
-      let x = 0;
-      let y = 0;
-      let z = 0;
-
-
-      //svi use m pa ce mi nesto trebat i hope
-
-
-
-
-      // ======================================
-      // GORE
-      // ======================================
-
-      if (
-        side === 0
-      ) {
-
-        y =
-          height;
-
-        x =
-          (Math.random() - 0.5) *
-          spread *
-          width;
-
-        z =
-          (Math.random() - 0.5) *
-          spread *
-          depth;
-
-      }
-
-
-      // ======================================
-      // DOLE
-      // ======================================
-
-      else if (
-        side === 1
-      ) {
-
-        y =
-          -height;
-
-        x =
-          (Math.random() - 0.5) *
-          spread *
-          width;
-
-        z =
-          (Math.random() - 0.5) *
-          spread *
-          depth;
-
-      }
-
-
-      // ======================================
-      // LIJEVO
-      // ======================================
-
-      else if (
-        side === 2
-      ) {
-
-        x =
-          -width;
-
-        y =
-          (Math.random() - 0.5) *
-          spread *
-          height;
-
-        z =
-          (Math.random() - 0.5) *
-          spread *
-          depth;
-
-      }
-
-
-      // ======================================
-      // DESNO
-      // ======================================
-
-      else {
-
-        x =
-          width;
-
-        y =
-          (Math.random() - 0.5) *
-          spread *
-          height;
-
-        z =
-          (Math.random() - 0.5) *
-          spread *
-          depth;
-
-      }
-
-
-      // ======================================
-      // NORMALIZE
-      // ======================================
-
-      const length =
-        Math.sqrt(
-          x * x +
-          y * y +
-          z * z
-        );
-
-
-      if (
-        length === 0
-      ) {
 
         return {
-          x: 0,
-          y: 1,
-          z: 0,
+            x: x / width,
+            y: y / height,
+            z: z / length,
         };
 
-      }
-
-
-      return {
-
-        x:
-          x / length,
-
-        y:
-          y / length,
-
-        z:
-          z / length,
-
-      };
 
     }, [
       spread,
@@ -330,7 +196,13 @@ const particles = useMemo(() => {
 
 
       const velocities =
-        particles.velocities;
+        particles.velocities
+        
+        
+        
+        
+        
+        ;
 
 
       // ========================================
@@ -529,43 +401,43 @@ particles.colors[i3 + 2] =
     // SHADER
     // ========================================
 
-      if (
-          materialRef.current
-        ) {
-    
-          materialRef.current.uTime +=
-            delta;
-    
-          
-          materialRef.current.uType = type;
-    
-          materialRef.current.uColor = color;
-    
-    materialRef.current.uIntensity = intensity;
-    
-     if (keyDown.current) {
-    
-        // tipka pritisnuta → pali shader
-        active.current += delta * 1.0;
-    
-      } else {
-    
-        // tipka puštena → gasi shader
-        active.current -= delta * 1.0;
-    
-      }
-    
-      active.current = THREE.MathUtils.clamp(
-        active.current,
-        0,
-        1
-      );
-    
-      materialRef.current.uActive =
-        active.current;
-    
+    if (
+      materialRef.current
+    ) {
+
+      materialRef.current.uTime +=
+        delta;
+
+      
+      materialRef.current.uType = type;
+
+      materialRef.current.uColor = color;
+
+      materialRef.current.uIntensity = intensity;
+
+      if (keyDown.current) {
+      
+          // tipka pritisnuta → pali shader
+          active.current += delta * 1.0;
+      
+        } else {
+      
+          // tipka puštena → gasi shader
+          active.current -= delta * 1.0;
+      
         }
-    
+      
+        active.current = THREE.MathUtils.clamp(
+          active.current,
+          0,
+          1
+        );
+      
+        materialRef.current.uActive =
+          active.current;
+      
+
+    }
 
 
     // ========================================
@@ -718,6 +590,16 @@ particles.colors[i3 + 2] =
   });
 
 
+
+// use m
+     
+useM(
+
+  pointsRef, 
+  exploded,
+  particles.velocities
+ 
+);
 
 
 

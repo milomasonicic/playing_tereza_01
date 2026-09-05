@@ -31,7 +31,7 @@ interface ExplosionProps {
   intensity?: number;
 }
 
-export default function Explosion({
+export default function ExplosionG({
 
   count = 100,
 
@@ -172,10 +172,10 @@ const particles = useMemo(() => {
       ) {
 
         y =
-          height;
+          width;
 
         x =
-          (Math.random() - 0.5) *
+          (Math.random() * 0.5) *
           spread *
           width;
 
@@ -196,7 +196,7 @@ const particles = useMemo(() => {
       ) {
 
         y =
-          -height;
+          height;
 
         x =
           (Math.random() - 0.5) *

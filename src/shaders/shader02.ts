@@ -9,6 +9,9 @@ const TwistMaterial11 = shaderMaterial(
     // COLOR + INTENSITY
     uColor: [0.08, 0.32, 0.45],
     uIntensity: 2,
+     // ACTIVE
+    uActive: 0,
+    
   },
 
   // =====================================
@@ -64,6 +67,7 @@ const TwistMaterial11 = shaderMaterial(
   uniform float uIntensity;
 
   varying vec3 vPosition;
+  uniform float uActive;
 
   void main() {
 
@@ -147,8 +151,9 @@ const TwistMaterial11 = shaderMaterial(
     gl_FragColor =
       vec4(
         color,
-        glow
+        glow * uActive
       );
+
   }
   `
 );

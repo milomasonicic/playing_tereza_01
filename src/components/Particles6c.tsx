@@ -85,6 +85,9 @@ const wildSpin = useRef(false);
   const exploded =
     useRef(false);
 
+    const active =
+  useRef(0);
+
   const keyDown =
     useRef(false);
 
@@ -353,6 +356,7 @@ particles.colors[i3 + 2] =
 
       exploded.current =
         true;
+        active.current = 0;
 
     }, [
       count,
@@ -475,21 +479,42 @@ particles.colors[i3 + 2] =
     // SHADER
     // ========================================
 
-    if (
-      materialRef.current
-    ) {
+ if (materialRef.current) {
 
-      materialRef.current.uTime +=
-        delta;
+  materialRef.current.uTime += delta;
 
-      
-      materialRef.current.uType = type;
+  materialRef.current.uType = type;
 
-      materialRef.current.uColor = color;
+  materialRef.current.uColor = color;
 
-materialRef.current.uIntensity = intensity;
+  materialRef.current.uIntensity = intensity;
 
-    }
+
+  // ========================================
+  // ACTIVE 0 → 1 → 0
+  // ========================================
+
+  if (keyDown.current) {
+
+    // tipka pritisnuta → pali shader
+    active.current += delta * 1.0;
+
+  } else {
+
+    // tipka puštena → gasi shader
+    active.current -= delta * 1.0;
+
+  }
+
+  active.current = THREE.MathUtils.clamp(
+    active.current,
+    0,
+    1
+  );
+
+  materialRef.current.uActive =
+    active.current;
+}
 
 
     // ========================================
@@ -501,7 +526,8 @@ materialRef.current.uIntensity = intensity;
     ) {
       return;
     }
-
+   
+    
 
     // ========================================
     // PARTICLE DATA
@@ -678,6 +704,7 @@ useM1(
 
       <twistMaterial11
         ref={materialRef}
+          transparent
       />
 
 

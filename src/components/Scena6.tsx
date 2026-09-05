@@ -5,6 +5,7 @@ import { BackGround1 } from "../shaders/pozadija";
 
 import Explosion6c from "./Particles6c";
 
+
 export default function Scena6()
 {
 
@@ -14,13 +15,13 @@ export default function Scena6()
 
     <Explosion6c
                count={11111}
-               maxRadius={16.35}
+               maxRadius={11.35}
                minSpeed={12.4}
                maxSpeed={21.5}
                spread={25}
-               width={118}
+               width={18}
                height={14}
-               depth={11}
+               depth={1}
                 position={[-12, 0, 0]}
                triggerKey1="k"
                type={2}
@@ -31,7 +32,7 @@ export default function Scena6()
 
       <Explosion6c
               count={11111}
-               maxRadius={16.35}
+               maxRadius={11.35}
                minSpeed={12.4}
                maxSpeed={21.5}
                spread={25}

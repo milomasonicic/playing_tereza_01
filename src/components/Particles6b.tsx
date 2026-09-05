@@ -85,6 +85,10 @@ const wildSpin = useRef(false);
   const exploded =
     useRef(false);
 
+      const active =
+  useRef(0);
+
+
   const keyDown =
     useRef(false);
 
@@ -133,16 +137,17 @@ const particles = useMemo(() => {
 
     const getDirection =
     useCallback(() => {
-        const theta = Math.random() * Math.PI * 2;
-        const phi = Math.acos(2 * Math.random() - 1);
+               const theta =
+                    Math.random() * Math.PI * 2;
 
-        return {
-            x: Math.tan(phi) * Math.sin(theta),
-            y: Math.cos(phi) * Math.tan(theta),
-            z: Math.cos(phi),
-        };
+                const radius =
+                    Math.random() * 0.5;
 
-
+                return {
+                    x: radius * Math.cos(theta),
+                    y: radius * Math.sin(theta),
+                    z: 1 + Math.random() * 2,
+                };
     }, [
       spread,
       width,
@@ -397,6 +402,27 @@ particles.colors[i3 + 2] =
 
 materialRef.current.uIntensity = intensity;
 
+ if (keyDown.current) {
+
+    // tipka pritisnuta → pali shader
+    active.current += delta * 1.0;
+
+  } else {
+
+    // tipka puštena → gasi shader
+    active.current -= delta * 1.0;
+
+  }
+
+  active.current = THREE.MathUtils.clamp(
+    active.current,
+    0,
+    1
+  );
+
+  materialRef.current.uActive =
+    active.current;
+
     }
 
 
@@ -566,7 +592,8 @@ useM(
 
   return (
     <>
-   
+    <group position={[7.5, 0, 0]}>
+      
      <points
       ref={pointsRef}
       position={position}
@@ -586,11 +613,14 @@ useM(
 
       <twistMaterial11
         ref={materialRef}
+        transparent
       />
 
 
 
-    </points>      
+    </points>  
+    
+    </group>    
     </>
   );
 }
