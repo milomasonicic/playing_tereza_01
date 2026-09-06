@@ -9,6 +9,7 @@ import Scena4 from "./components/Scena4";
 import Scena5 from "./components/Scena5";
 import Scena6 from "./components/Scena6";
 import ScenaFinal from "./components/Scena_final1";
+import Druga_sc from "./components/01scena";
 /*import Scena2 from "./components/Scena2";
 import Scena3 from "./components/Scena3";
 
@@ -52,6 +53,7 @@ function SceneCanvas() {
           <Route path="/scena5" element={<Scena5 />} />
           <Route path="/scena6" element={<Scena6 />} />
           <Route path="/test" element={<ScenaFinal />} />
+          <Route path="/druga" element={<Druga_sc/>} />
           
         </Routes>
 
