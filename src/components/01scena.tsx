@@ -2,13 +2,19 @@ import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import { BackGround1 } from "../shaders/pozadija";
+import Krug from "./krug";
 import Explosion1610 from "./01late";
+import LatteGeo from "./02latte";
+import LatteField from "./LatteField";
 
 export default function Druga_sc()
 {
 
  return (
   <>
+ 
+   <LatteField></LatteField>
+
    <Explosion1610
                 count={3000}
       maxRadius={111.35}

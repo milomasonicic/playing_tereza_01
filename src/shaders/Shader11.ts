@@ -35,8 +35,9 @@ const HipiMaterial1 = shaderMaterial(
     // 3 = CENTER -> BOTTOM
     // 4 = OSCILLATION
     //
-    uWaveType: 4,
+    uWaveType: 2,
     uWaveColor: [0.15, 0.85, 1.0],
+    
   },
 
 
@@ -63,14 +64,7 @@ void main() {
             0.0,
             1.0
         );
-if (uWaveType < 0.5) {
 
-    float scale =
-        1.0 +
-        sin(progress * 4.0) * 2.15;
-
-    newPosition *= scale;
-}
 
     // OVDE mora newPosition
     vec4 worldPosition =
@@ -98,6 +92,7 @@ if (uWaveType < 0.5) {
   varying vec2 vUv;
   varying vec3 vWorldPosition;
   uniform vec3 uWaveColor;
+  
 
 
   // =======================================================
