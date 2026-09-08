@@ -3,6 +3,7 @@ import { useRef, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import { HipiMaterial1 } from "../shaders/Shader11";
 import { Mesh, Group } from "three";
+import { useLatteMove } from "../movement/useMov_latte";
 
 interface LatteProps {
   triggerKey?: string;
@@ -67,10 +68,33 @@ export default function LatteGeo({
 
     materialRef.current.uWaveTrigger = waveValue.current;
 
-    
+     if (keyDown.current) {
 
+    // tipka pritisnuta → pali shader
+    active.current += delta * 1.0;
+
+  } else {
+
+    // tipka puštena → gasi shader
+    active.current -= delta * 1.0;
+
+  }
+
+  active.current = THREE.MathUtils.clamp(
+      active.current,
+      0,
+      1
+    );
+
+     materialRef.current.uActive =
+    active.current;
     
   });
+
+  useLatteMove(
+  rigRef,
+  active
+);
 
   return (
     <group
@@ -97,6 +121,7 @@ export default function LatteGeo({
   <hipiMaterial1
     ref={materialRef}
     wireframe
+    transparent
   />
 </mesh>
     </group>

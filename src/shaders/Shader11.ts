@@ -13,6 +13,8 @@ const HipiMaterial1 = shaderMaterial(
   // =======================================================
 
   {
+    // ACTIVE
+    uActive: 0,
     uTime: 0,
 
     // 0 -> 1
@@ -92,6 +94,7 @@ void main() {
   varying vec2 vUv;
   varying vec3 vWorldPosition;
   uniform vec3 uWaveColor;
+  uniform float uActive;
   
 
 
@@ -671,7 +674,7 @@ else if (uWaveType > 6.5) {
       gl_FragColor =
           vec4(
               color,
-              alpha
+              alpha * uActive
           );
 
   }
