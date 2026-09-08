@@ -108,7 +108,7 @@ export default function LatteGeo({
   <latheGeometry
     args={[
       [
-        new THREE.Vector2(0.00, -0.65),
+        new THREE.Vector2(1.00, -0.65),
         new THREE.Vector2(0.10, -0.64),
         new THREE.Vector2(0.17, -0.58),
         new THREE.Vector2(0.20, -0.48),
