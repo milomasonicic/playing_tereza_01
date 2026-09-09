@@ -2,7 +2,8 @@
 import Expl from "./expl"
 import Expl_nova from "./expl_nova"
 import { getDirectionNova } from "../function/getdirection"
-
+import { getDirectionNova1 } from "../function/getdirection"
+import { getDirectionNova11 } from "../function/getdirection"
 
 
 export default function Test1()
@@ -61,6 +62,50 @@ export default function Test1()
                    getDirection={getDirectionNova}
                 />     
 
+                
+                <Expl_nova   count={11111}
+                  maxRadius={22.35}
+                  minSpeed={12.4}
+                  maxSpeed={31.5}
+                  spread={0.25}
+                  width={2}
+                  height={0.51}
+                  depth={111}
+                  position={[-0.2, 5, 15]}
+                  triggerKey1="s"
+                  type={2}
+                  sound="dobra1.wav"
+                  color={[2.5, 0.02, 0.01]}
+                  intensity={13.5}
+                   getDirection={getDirectionNova1}
+                /> 
+
+                
+                <Expl_nova   count={11111}
+                  maxRadius={22.35}
+                  minSpeed={12.4}
+                  maxSpeed={31.5}
+                  spread={0.25}
+                  width={12}
+                  height={22.51}
+                  depth={111}
+                  position={[-0.2, 1, 15]}
+                  triggerKey1="l"
+                  type={2}
+                  sound="dobra1.wav"
+                  color={[2.5, 0.35, 0.02]}
+                  intensity={13.5}
+                   getDirection={getDirectionNova11}
+                /> 
+
+
+                    
+
+                
+
+            
+                   
+ 
  </>
 )
 }
