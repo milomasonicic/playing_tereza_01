@@ -3,8 +3,9 @@ import { useMemo, useRef, useCallback, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import { TwistMaterial11 } from "../shaders/shader02";
 import { useAudio } from "../audio/AudioProvider";
-import { useM } from "../movement/useMov_scena4";
+//import { useM } from "../movement/useMov_scena4";
 //import { useM1 } from "../movement/use_Mov7";
+import { useM1 } from "../movement/use_Mov7"
 
 interface ExplosionProps {
 
@@ -38,7 +39,7 @@ interface ExplosionProps {
   };
 }
 
-export default function Expl_nova({
+export default function Expl_nova0222({
 
   count = 100,
 
@@ -192,26 +193,100 @@ const particles = useMemo(() => {
 
         const i3 =
           i * 3;
+         
 
+const size = 14;
+const half = size / 2;
 
-        positions[i3] =
-          0;
+const edge = Math.floor(
+  Math.random() * 162
+);
 
-        positions[i3 + 1] =
-          0;
+const t =
+  (Math.random() - 0.5) * size;
 
-        positions[i3 + 2] =
-          0;
+const h =
+  Math.random() < 0.5
+    ? -half
+    : half;
 
-          particles.colors[i3] =
-  Math.random();
+switch (edge) {
 
-particles.colors[i3 + 1] =
-  Math.random();
+  // X edges
+  case 0:
+    positions[i3] = t;
+    positions[i3 + 1] = h;
+    positions[i3 + 2] = h;
+    break;
 
-particles.colors[i3 + 2] =
-  Math.random();
+  case 1:
+    positions[i3] = t;
+    positions[i3 + 1] = h;
+    positions[i3 + 2] = -h;
+    break;
 
+  case 2:
+    positions[i3] = t;
+    positions[i3 + 1] = -h;
+    positions[i3 + 2] = h;
+    break;
+
+  case 3:
+    positions[i3] = t;
+    positions[i3 + 1] = -h;
+    positions[i3 + 2] = -h;
+    break;
+
+  // Y edges
+  case 4:
+    positions[i3] = h;
+    positions[i3 + 1] = t;
+    positions[i3 + 2] = h;
+    break;
+
+  case 5:
+    positions[i3] = h;
+    positions[i3 + 1] = t;
+    positions[i3 + 2] = -h;
+    break;
+
+  case 6:
+    positions[i3] = -h;
+    positions[i3 + 1] = t;
+    positions[i3 + 2] = h;
+    break;
+
+  case 7:
+    positions[i3] = -h;
+    positions[i3 + 1] = t;
+    positions[i3 + 2] = -h;
+    break;
+
+  // Z edges
+  case 8:
+    positions[i3] = h;
+    positions[i3 + 1] = h;
+    positions[i3 + 2] = t;
+    break;
+
+  case 9:
+    positions[i3] = h;
+    positions[i3 + 1] = -h;
+    positions[i3 + 2] = t;
+    break;
+
+  case 10:
+    positions[i3] = -h;
+    positions[i3 + 1] = h;
+    positions[i3 + 2] = t;
+    break;
+
+  case 11:
+    positions[i3] = -h;
+    positions[i3 + 1] = -h;
+    positions[i3 + 2] = t;
+    break;
+}
             
 
         // ======================================
@@ -568,7 +643,7 @@ particles.colors[i3 + 2] =
 
 // use m
      
-useM(
+useM1(
 
   pointsRef, 
   exploded,

@@ -3,8 +3,12 @@ import { useMemo, useRef, useCallback, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import { TwistMaterial11 } from "../shaders/shader02";
 import { useAudio } from "../audio/AudioProvider";
-import { useM } from "../movement/useMov_scena4";
+//import { useM } from "../movement/useMov_scena4";
 //import { useM1 } from "../movement/use_Mov7";
+import { useM1 } from "../movement/use_Mov7"
+import { explode } from "../function/explode"
+import type { ExplodeParams } from "./explode_types";
+
 
 interface ExplosionProps {
 
@@ -36,9 +40,11 @@ interface ExplosionProps {
     y: number;
     z: number;
   };
+    // NOVO
+   explode: (params: ExplodeParams) => void;
 }
 
-export default function Expl_nova({
+export default function Expl_nova_funkc({
 
   count = 100,
 
@@ -62,7 +68,8 @@ export default function Expl_nova({
   sound ="outer",
    color = [0.08, 0.32, 0.45],
   intensity = 2.0,
-    getDirection,
+   getDirection,
+   explode
 
 }: ExplosionProps){
 
@@ -148,121 +155,7 @@ const particles = useMemo(() => {
   // KEYBOARD
   // ==========================================
 
-  const explode =
-    useCallback(() => {
-
-      const points =
-        pointsRef.current;
-
-      if (!points)
-        return;
-
-
-      const positionAttribute =
-        points
-          .geometry
-          .attributes
-          .position;
-
-
-      const positions =
-        positionAttribute
-          .array as Float32Array;
-
-
-      const velocities =
-        particles.velocities
-        
-        
-        
-        
-        
-        ;
-
-
-      // ========================================
-      // RESET PARTICLES
-      // ========================================
-
-      for (
-        let i = 0;
-        i < count;
-        i++
-      ) {
-
-        const i3 =
-          i * 3;
-
-
-        positions[i3] =
-          0;
-
-        positions[i3 + 1] =
-          0;
-
-        positions[i3 + 2] =
-          0;
-
-          particles.colors[i3] =
-  Math.random();
-
-particles.colors[i3 + 1] =
-  Math.random();
-
-particles.colors[i3 + 2] =
-  Math.random();
-
-            
-
-        // ======================================
-        // DIRECTION
-        // ======================================
-
-        const direction =
-          getDirection();
-
-
-        // ======================================
-        // SPEED
-        // ======================================
-
-        const speed =
-          Math.random() *
-          (max - min) +
-          min;
-
-
-        // ======================================
-        // VELOCITY
-        // ======================================
-
-        velocities[i3] =
-          direction.x * speed;
-
-        velocities[i3 + 1] =
-          direction.y * speed;
-
-        velocities[i3 + 2] =
-          direction.z * speed;
-
-      }
-
-
-      positionAttribute.needsUpdate =
-        true;
-
-
-      exploded.current =
-        true;
-
-    }, [
-      count,
-      min,
-      max,
-      particles,
-      getDirection,
-    ]);
-
+  
 
      // ==========================================
   // KEYBOARD LISTENER
@@ -290,12 +183,24 @@ particles.colors[i3 + 2] =
         ) {
           return;
         }
-
+       
 
         keyDown.current =
           true;
+         const points =
+        pointsRef.current;   
 
-        explode();
+        explode({
+        points,
+        positions: particles.positions,
+        velocities: particles.velocities,
+        count,
+        minSpeed: min,
+        maxSpeed: max,
+        getDirection,
+        });
+
+            exploded.current = true;
 
        playSound();
 
@@ -568,7 +473,7 @@ particles.colors[i3 + 2] =
 
 // use m
      
-useM(
+useM1(
 
   pointsRef, 
   exploded,

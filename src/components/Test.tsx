@@ -1,10 +1,13 @@
 
 import Expl from "./expl"
 import Expl_nova from "./expl_nova"
+import Expl_nova02 from "./expl_nova11"
 import { getDirectionNova } from "../function/getdirection"
 import { getDirectionNova1 } from "../function/getdirection"
 import { getDirectionNova11 } from "../function/getdirection"
-
+import Expl_nova0222 from "./expl_nova11"
+import Expl_nova_funkc from "./expl_nova1001"
+import { explode } from "../function/explode"
 
 export default function Test1()
 {
@@ -81,7 +84,7 @@ export default function Test1()
                 /> 
 
                 
-                <Expl_nova   count={11111}
+                <Expl_nova0222 count={7000}
                   maxRadius={22.35}
                   minSpeed={12.4}
                   maxSpeed={31.5}
@@ -89,23 +92,53 @@ export default function Test1()
                   width={12}
                   height={22.51}
                   depth={111}
-                  position={[-0.2, 1, 15]}
-                  triggerKey1="l"
+                  position={[2, 5, 15]}
+                  triggerKey1="j"
                   type={2}
                   sound="dobra1.wav"
                   color={[2.5, 0.35, 0.02]}
                   intensity={13.5}
-                   getDirection={getDirectionNova11}
+                   getDirection={getDirectionNova}
+                /> 
+
+                     
+                <Expl_nova0222 count={11000}
+                  maxRadius={22.35}
+                  minSpeed={12.4}
+                  maxSpeed={31.5}
+                  spread={0.25}
+                  width={12}
+                  height={22.51}
+                  depth={111}
+                  position={[-0.2, 5, 15]}
+                  triggerKey1="j"
+                  type={1}
+                  sound="dobra1.wav"
+                  color={[0.5, 1.35, 2.02]}
+                  intensity={10.5}
+                   getDirection={getDirectionNova}
                 /> 
 
 
-                    
+                <Expl_nova_funkc
+                count={11000}
+                  maxRadius={22.35}
+                  minSpeed={12.4}
+                  maxSpeed={31.5}
+                  spread={0.25}
+                  width={12}
+                  height={22.51}
+                  depth={111}
+                  position={[-0.2, 5, 15]}
+                  triggerKey1="k"
+                  type={1}
+                  sound="dobra1.wav"
+                  color={[0.5, 1.35, 2.02]}
+                  intensity={10.5}
+                  getDirection={getDirectionNova}
+                  explode={explode}
+                /> 
 
-                
-
-            
-                   
- 
  </>
 )
 }
