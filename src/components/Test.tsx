@@ -8,6 +8,12 @@ import { getDirectionNova11 } from "../function/getdirection"
 import Expl_nova0222 from "./expl_nova11"
 import Expl_nova_funkc from "./expl_nova1001"
 import { explode } from "../function/explode"
+import { explode1 } from "../function/explode"
+import { explode2 } from "../function/explode"
+import { explode4 } from "../function/explode"
+import { explode6 } from "../function/explode"
+import { explode7 } from "../function/explode"
+
 
 export default function Test1()
 {
@@ -134,10 +140,112 @@ export default function Test1()
                   type={1}
                   sound="dobra1.wav"
                   color={[0.5, 1.35, 2.02]}
-                  intensity={10.5}
+                  intensity={2.5}
                   getDirection={getDirectionNova}
                   explode={explode}
                 /> 
+
+                <Expl_nova_funkc
+                count={5100}
+                  maxRadius={22.35}
+                  minSpeed={12.4}
+                  maxSpeed={31.5}
+                  spread={0.25}
+                  width={12}
+                  height={22.51}
+                  depth={111}
+                  position={[-0.2, 5, 15]}
+                  triggerKey1="f"
+                  type={1}
+                  sound="dobra1.wav"
+                  color={[0.5, 1.35, 2.02]}
+                  intensity={1.5}
+                  getDirection={getDirectionNova}
+                  explode={explode1}
+                /> 
+
+                  <Expl_nova_funkc
+                count={100}
+                  maxRadius={22.35}
+                  minSpeed={12.4}
+                  maxSpeed={31.5}
+                  spread={0.25}
+                  width={12}
+                  height={22.51}
+                  depth={111}
+                  position={[-0.2, 5, 15]}
+                  triggerKey1="f"
+                  type={4}
+                  sound="dobra1.wav"
+                  color={[1.5, 2.35, 0.02]}
+                  intensity={1.5}
+                  getDirection={getDirectionNova}
+                  explode={explode1}
+                /> 
+
+
+                <Expl_nova_funkc
+                count={11100}
+                  maxRadius={122.35}
+                  minSpeed={12.4}
+                  maxSpeed={31.5}
+                  spread={0.25}
+                  width={12}
+                  height={22.51}
+                  depth={111}
+                  position={[-0.2, 5, 15]}
+                  triggerKey1="h"
+                  type={2}
+                  sound="dobra1.wav"
+                  color={[1.5, 2.35, 0.02]}
+                  intensity={1.5}
+                  getDirection={getDirectionNova}
+                  explode={explode2}
+                /> 
+
+          
+         <Expl_nova_funkc
+                count={11100}
+                  maxRadius={122.35}
+                  minSpeed={12.4}
+                  maxSpeed={31.5}
+                  spread={0.25}
+                  width={12}
+                  height={22.51}
+                  depth={111}
+                  position={[-0.2, 5, 15]}
+                  triggerKey1="d"
+                  type={2}
+                  sound="dobra1.wav"
+                  color={[1.5, 2.35, 0.02]}
+                  intensity={1.5}
+                  getDirection={getDirectionNova}
+                  explode={explode4}
+                /> 
+
+                
+         <Expl_nova_funkc
+                count={11100}
+                  maxRadius={122.35}
+                  minSpeed={12.4}
+                  maxSpeed={31.5}
+                  spread={0.25}
+                  width={12}
+                  height={22.51}
+                  depth={111}
+                  position={[-0.2, 5, 15]}
+                  triggerKey1="l"
+                  type={2}
+                  sound="dobra1.wav"
+                  color={[1.5, 2.35, 0.02]}
+                  intensity={1.5}
+                  getDirection={getDirectionNova}
+                  explode={explode7}
+                /> 
+
+                
+              
+                
 
  </>
 )
