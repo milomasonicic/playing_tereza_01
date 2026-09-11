@@ -11,6 +11,7 @@ import Scena6 from "./components/Scena6";
 import ScenaFinal from "./components/Scena_final1";
 import Druga_sc from "./components/01scena";
 import Test1 from "./components/Test";
+import Test2 from "./components/Scene22";
 /*import Scena2 from "./components/Scena2";
 import Scena3 from "./components/Scena3";
 
@@ -56,7 +57,8 @@ function SceneCanvas() {
           <Route path="/test" element={<ScenaFinal />} />
           <Route path="/druga" element={<Druga_sc/>} />
           <Route path="/test11" element={<Test1/>} />
-          
+          <Route path="/test12" element={<Test2/>} />
+           
         </Routes>
 
       </KeyboardProvider>
