@@ -57,7 +57,7 @@ export default function Prvo()
                                       position={[-0.2, 5, 15]}
                                       triggerKey1="s"
                                       type={2}
-                                      sound="dobra1.wav"
+                                      sound="ppp.wav"
                                       color={[1.0, 1.02, 1.8]}
                                       intensity={2.5}
                                       getDirection={getDirectionNova}
@@ -76,7 +76,7 @@ export default function Prvo()
                                       position={[-0.2, 5, 15]}
                                       triggerKey1="s"
                                       type={5}
-                                      sound="dobra1.wav"
+                                      sound="ppp.wav"
                                       color={[1.0, 1.02, 1.8]}
                                       intensity={12.5}
                                       getDirection={getDirectionNova}
@@ -86,8 +86,8 @@ export default function Prvo()
                       <Expl_nova_funkc
                                     count={3000}
                                       maxRadius={92.35}
-                                      minSpeed={12.4}
-                                      maxSpeed={31.5}
+                                      minSpeed={20.4}
+                                      maxSpeed={28.5}
                                       spread={0.25}
                                       width={12}
                                       height={22.51}
@@ -95,7 +95,7 @@ export default function Prvo()
                                       position={[-0.2, 5, 15]}
                                       triggerKey1="d"
                                       type={2}
-                                      sound="dobra1.wav"
+                                      sound="boze.wav"
                                       color={[1.20, 1.92, 1.8]}
                                       intensity={13.5}
                                       getDirection={getDirectionNova}
@@ -104,8 +104,8 @@ export default function Prvo()
                         <Expl_nova_funkc
                                     count={2000}
                                       maxRadius={72.35}
-                                      minSpeed={12.4}
-                                      maxSpeed={31.5}
+                                      minSpeed={20.4}
+                                      maxSpeed={28.5}
                                       spread={0.25}
                                       width={12}
                                       height={22.51}
@@ -113,7 +113,7 @@ export default function Prvo()
                                       position={[-0.2, 5, 15]}
                                       triggerKey1="d"
                                       type={1}
-                                      sound="dobra1.wav"
+                                      sound="boze.wav"
                                       color={[0.20, 1.92, 1.8]}
                                       intensity={4.5}
                                       getDirection={getDirectionNova}
@@ -132,7 +132,7 @@ export default function Prvo()
                                                  position={[-12, 0, 0]}
                                                 triggerKey1="f"
                                                 type={2}
-                                                sound="dobra1.wav"
+                                                sound="okej.wav"
                                                 color={[2.5, 1.5, 1.8]}
                                                 intensity={23.5}
                                               />  
@@ -148,7 +148,7 @@ export default function Prvo()
                                                  position={[-12, 0, 0]}
                                                 triggerKey1="f"
                                                 type={4}
-                                                sound="dobra1.wav"
+                                                sound="okej.wav"
                                                 color={[2.5, 0.05, 0.08]}
                                                 intensity={23.5}
                                               />                                                   
