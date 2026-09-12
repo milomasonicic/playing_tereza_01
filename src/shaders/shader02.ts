@@ -46,7 +46,11 @@ const TwistMaterial11 = shaderMaterial(
 
       gl_PointSize = 16.8;
 
-    }
+    } else if (uType < 5.5) {
+
+        gl_PointSize = 18.0;
+
+      }
 
     gl_Position =
       projectionMatrix *
@@ -62,99 +66,151 @@ const TwistMaterial11 = shaderMaterial(
   `
   uniform float uType;
 
-  // COLOR + INTENSITY
-  uniform vec3 uColor;
-  uniform float uIntensity;
+uniform vec3 uColor;
+uniform float uIntensity;
 
-  varying vec3 vPosition;
-  uniform float uActive;
+varying vec3 vPosition;
+uniform float uActive;
 
-  void main() {
+void main() {
+
+  // =====================================
+  // PARTICLE SHAPE
+  // =====================================
+
+  vec2 uv =
+    gl_PointCoord - 0.5;
+
+  float dist =
+    length(uv);
+
+  float glow;
+
+
+  // =====================================
+  // TYPE 5 - ENERGY SHAPE
+  // =====================================
+
+  if (uType >= 4.5 && uType < 5.5) {
+
+    float x = abs(uv.x);
+    float y = abs(uv.y);
+
+    // horizontal ray
+    float horizontal =
+      1.0 - smoothstep(
+        0.0,
+        0.08,
+        y
+      );
+
+    // vertical ray
+    float vertical =
+      1.0 - smoothstep(
+        0.0,
+        0.8,
+        x
+      );
+
+    // central glow
+    float center =
+      1.0 - smoothstep(
+        0.0,
+        0.22,
+        dist
+      );
+
+    glow =
+      max(
+        max(horizontal, vertical),
+        center
+      );
+
+    // dodatni soft glow
+    glow *=
+      1.0 - smoothstep(
+        0.15,
+        0.5,
+        dist
+      );
+
+  }
+  else {
 
     // =====================================
-    // PARTICLE SHAPE
+    // NORMAL PARTICLE
     // =====================================
 
-    vec2 uv =
-      gl_PointCoord - 0.5;
-
-    float dist =
-      length(uv);
-
-    float glow =
+    glow =
       1.0 - smoothstep(
         0.5,
         0.0,
         dist
       );
 
-
-    // =====================================
-    // COLOR
-    // =====================================
-
-    vec3 color;
+  }
 
 
-    if (uType < 1.5) {
+  // =====================================
+  // COLOR
+  // =====================================
 
-      // TYPE 1
-      // koristi color iz Explosion propa
-
-      color = uColor;
-
-    }
-    else if (uType < 2.5) {
-
-      // TYPE 2
-      // koristi color iz Explosion propa
-
-      color = uColor;
-
-    }
-    else if (uType < 3.5) {
-
-      // TYPE 3
-      // koristi color iz Explosion propa
-
-      color = uColor;
-
-    }
-    else if (uType < 4.5) {
-
-      // TYPE 4
-      // koristi color iz Explosion propa
-
-      color = uColor;
-
-    }
+  vec3 color;
 
 
-    // =====================================
-    // GLOW
-    // =====================================
+  if (uType < 1.5) {
 
-    color *= glow * 3.0;
-
-
-    // =====================================
-    // INTENSITY
-    // =====================================
-
-    color *= uIntensity;
-
-
-    // =====================================
-    // FINAL
-    // =====================================
-
-    gl_FragColor =
-      vec4(
-        color,
-        glow * uActive
-      );
+    color = uColor;
 
   }
+  else if (uType < 2.5) {
+
+    color = uColor;
+
+  }
+  else if (uType < 3.5) {
+
+    color = uColor;
+
+  }
+  else if (uType < 4.5) {
+
+    color = uColor;
+
+  }
+  else if (uType < 5.5) {
+
+    // TYPE 5
+    color = uColor;
+
+  }
+
+
+  // =====================================
+  // GLOW
+  // =====================================
+
+  color *= glow * 3.0;
+
+
+  // =====================================
+  // INTENSITY
+  // =====================================
+
+  color *= uIntensity;
+
+
+  // =====================================
+  // FINAL
+  // =====================================
+
+  gl_FragColor =
+    vec4(
+      color,
+      glow * uActive
+    );
+
+}
   `
 );
 

@@ -12,6 +12,7 @@ import ScenaFinal from "./components/Scena_final1";
 import Druga_sc from "./components/01scena";
 import Test1 from "./components/Test";
 import Test2 from "./components/Scene22";
+import Prvo from "./components/Pravo1";
 /*import Scena2 from "./components/Scena2";
 import Scena3 from "./components/Scena3";
 
@@ -40,7 +41,8 @@ function SceneCanvas() {
         fov: 50,
       }}
       onCreated={({ scene }) => {
-        scene.background = new THREE.Color("#012566");
+        ///scene.background = new THREE.Color("#012566");
+        scene.background = new THREE.Color("#111111");
       }}
     >
       <AudioProvider>
@@ -58,6 +60,7 @@ function SceneCanvas() {
           <Route path="/druga" element={<Druga_sc/>} />
           <Route path="/test11" element={<Test1/>} />
           <Route path="/test12" element={<Test2/>} />
+          <Route path="/prvo" element={<Prvo/>} />
            
         </Routes>
 
