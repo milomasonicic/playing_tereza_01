@@ -54,13 +54,15 @@ export default function Pano({
     video.playsInline = true;
     video.autoplay = true;
 
-    const videoTexture =
-      new THREE.VideoTexture(video);
+   
+    const videoTexture = new THREE.VideoTexture(video);
 
-    videoTexture.colorSpace =
-      THREE.SRGBColorSpace;
+    videoTexture.colorSpace = THREE.SRGBColorSpace;
+    videoTexture.minFilter = THREE.LinearFilter;
+    videoTexture.magFilter = THREE.LinearFilter;
+    videoTexture.generateMipmaps = false;
 
-    setTexture(videoTexture);
+    setTexture(videoTexture);  
 
     video.play().catch(console.log);
 

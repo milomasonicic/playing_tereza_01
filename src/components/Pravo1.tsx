@@ -23,13 +23,13 @@ export default function Prvo()
                        position={[1, 2.2, 10]}
                       triggerKey1="a"
                       type={5}
-                      sound="dobra1.wav"
+                      sound="znam.wav"
                        color={[1.0, 1.02, 0.8]}
                       intensity={6.5}
                     />
 
                       <Expl
-                        count={11111}
+                        count={1111}
                         maxRadius={11.35}
                         minSpeed={12.4}
                         maxSpeed={31.5}
@@ -40,7 +40,7 @@ export default function Prvo()
                         position={[1, 2.2, 10]}
                         triggerKey1="a"
                         type={2}
-                        sound="dobra1.wav"
+                        sound="znam.wav"
                         color={[1.2, 1.5, 2.5]}
                         intensity={7.5}
                     /> 
@@ -155,14 +155,22 @@ export default function Prvo()
     
       
             <Pano 
-             width={40}
-             height={40} 
+             width={35}
+             height={35} 
              triggerKey="l"
-             videoName="stena2.mp4"
+             videoName="trk22.mp4"
              shape="circle"
              position1={[0, 0, 0]}
-             sound="dobra1.wav"></Pano>
-          
+             sound="wav (3).wav"></Pano>   
+
+                <Pano 
+             width={35}
+             height={35} 
+             triggerKey="k"
+             videoName="lice.mp4"
+             shape="circle"
+             position1={[0, 0, 0]}
+             sound="wav (1).wav"></Pano>      
 
     </>
   )
