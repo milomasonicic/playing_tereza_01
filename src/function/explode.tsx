@@ -577,3 +577,62 @@ export function explode7({
 
   positionAttribute.needsUpdate = true;
 }
+
+
+
+export function splash({
+  points,
+  positions,
+  velocities,
+  count,
+  minSpeed,
+  maxSpeed,
+}: ExplodeParams) {
+  const positionAttribute =
+    points.geometry.attributes.position;
+
+  const min = Math.min(minSpeed, maxSpeed);
+  const max = Math.max(minSpeed, maxSpeed);
+
+  for (let i = 0; i < count; i++) {
+    const i3 = i * 3;
+
+    // Start from the origin
+    positions[i3] = 0;
+    positions[i3 + 1] = 0;
+    positions[i3 + 2] = 0;
+
+    // Random angle around Y axis
+    const angle =
+      Math.random() * Math.PI * 2;
+
+    // Mostly horizontal spread
+    const spread =
+      Math.random() * 0.8 + 0.2;
+
+    // Random upward angle
+    const upward =
+      Math.random() * 0.9 + 0.3;
+
+    const direction =
+      new THREE.Vector3(
+        Math.cos(angle) * spread,
+        upward,
+        Math.sin(angle) * spread
+      ).normalize();
+
+    const speed =
+      Math.random() * (max - min) + min;
+
+    velocities[i3] =
+      direction.x * speed;
+
+    velocities[i3 + 1] =
+      direction.y * speed;
+
+    velocities[i3 + 2] =
+      direction.z * speed;
+  }
+
+  positionAttribute.needsUpdate = true;
+}

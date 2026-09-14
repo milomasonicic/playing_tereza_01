@@ -158,19 +158,28 @@ export default function Prvo()
              width={35}
              height={35} 
              triggerKey="l"
-             videoName="trk22.mp4"
+             videoName="output111.webm"
              shape="circle"
              position1={[0, 0, 0]}
-             sound="wav (3).wav"></Pano>   
+             sound="raz.wav"></Pano>   
 
                 <Pano 
              width={35}
              height={35} 
              triggerKey="k"
-             videoName="lice.mp4"
+             videoName="jako.webm"
              shape="circle"
              position1={[0, 0, 0]}
-             sound="wav (1).wav"></Pano>      
+             sound="raz1.wav"></Pano>      
+
+              <Pano 
+             width={35}
+             height={35} 
+             triggerKey="j"
+             videoName="jako1.webm"
+             shape="circle"
+             position1={[0, 0, 0]}
+             sound="raz3.wav"></Pano>      
 
     </>
   )

@@ -52,3 +52,28 @@ export const getDirectionNova11 = () => {
   };
 };
 
+
+
+export const getDirectionSplash = () => {
+  const angle = Math.random() * Math.PI * 2;
+
+  // Horizontalni spread
+  const radius = 0.7 + Math.random() * 0.5;
+
+  // Malo čestica ide više gore, većina nisko
+  const y =
+    Math.random() * 0.8 + 0.15;
+
+  const direction = new THREE.Vector3(
+    Math.cos(angle) * radius,
+    y,
+    Math.sin(angle) * radius
+  ).normalize();
+
+  return {
+    x: direction.x,
+    y: direction.y,
+    z: direction.z,
+  };
+};
+

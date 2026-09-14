@@ -13,6 +13,9 @@ import Druga_sc from "./components/01scena";
 import Test1 from "./components/Test";
 import Test2 from "./components/Scene22";
 import Prvo from "./components/Pravo1";
+import Prvo_nastavak from "./components/Pravo2";
+import Prvo1 from "./components/prvo_01";
+
 /*import Scena2 from "./components/Scena2";
 import Scena3 from "./components/Scena3";
 
@@ -61,7 +64,9 @@ function SceneCanvas() {
           <Route path="/test11" element={<Test1/>} />
           <Route path="/test12" element={<Test2/>} />
           <Route path="/prvo" element={<Prvo/>} />
-           
+          <Route path="/prvo_nastavak" element={<Prvo_nastavak/>} />
+          <Route path="/try" element={<Prvo1/>} />
+          
         </Routes>
 
       </KeyboardProvider>

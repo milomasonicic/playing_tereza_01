@@ -5,7 +5,10 @@ import { TwistMaterial11 } from "../shaders/shader02";
 import { useAudio } from "../audio/AudioProvider";
 //import { useM } from "../movement/useMov_scena4";
 //import { useM1 } from "../movement/use_Mov7";
-import { useM1 } from "../movement/use_Mov7"
+import { useM1 } from "../movement/use_mov4"
+import { explode } from "../function/explode"
+import type { ExplodeParams } from "./explode_types";
+
 
 interface ExplosionProps {
 
@@ -37,9 +40,11 @@ interface ExplosionProps {
     y: number;
     z: number;
   };
+    // NOVO
+   explode: (params: ExplodeParams) => void;
 }
 
-export default function Expl_nova0222({
+export default function Expl_nova_funkc1({
 
   count = 100,
 
@@ -63,7 +68,8 @@ export default function Expl_nova0222({
   sound ="outer",
    color = [0.08, 0.32, 0.45],
   intensity = 2.0,
-    getDirection,
+   getDirection,
+   explode
 
 }: ExplosionProps){
 
@@ -149,195 +155,7 @@ const particles = useMemo(() => {
   // KEYBOARD
   // ==========================================
 
-  const explode =
-    useCallback(() => {
-
-      const points =
-        pointsRef.current;
-
-      if (!points)
-        return;
-
-
-      const positionAttribute =
-        points
-          .geometry
-          .attributes
-          .position;
-
-
-      const positions =
-        positionAttribute
-          .array as Float32Array;
-
-
-      const velocities =
-        particles.velocities
-        
-        
-        
-        
-        
-        ;
-
-
-      // ========================================
-      // RESET PARTICLES
-      // ========================================
-
-      for (
-        let i = 0;
-        i < count;
-        i++
-      ) {
-
-        const i3 =
-          i * 3;
-         
-
-const size = 67;
-const half = size / 2;
-
-const edge = Math.floor(
-  Math.random() * 162
-);
-
-const t =
-  (Math.random() - 0.5) * size;
-
-const h =
-  Math.random() < 0.5
-    ? -half
-    : half;
-
-switch (edge) {
-
-  // X edges
-  case 0:
-    positions[i3] = t;
-    positions[i3 + 1] = h;
-    positions[i3 + 2] = h;
-    break;
-
-  case 1:
-    positions[i3] = t;
-    positions[i3 + 1] = h;
-    positions[i3 + 2] = -h;
-    break;
-
-  case 2:
-    positions[i3] = t;
-    positions[i3 + 1] = -h;
-    positions[i3 + 2] = h;
-    break;
-
-  case 3:
-    positions[i3] = t;
-    positions[i3 + 1] = -h;
-    positions[i3 + 2] = -h;
-    break;
-
-  // Y edges
-  case 4:
-    positions[i3] = h;
-    positions[i3 + 1] = t;
-    positions[i3 + 2] = h;
-    break;
-
-  case 5:
-    positions[i3] = h;
-    positions[i3 + 1] = t;
-    positions[i3 + 2] = -h;
-    break;
-
-  case 6:
-    positions[i3] = -h;
-    positions[i3 + 1] = t;
-    positions[i3 + 2] = h;
-    break;
-
-  case 7:
-    positions[i3] = -h;
-    positions[i3 + 1] = t;
-    positions[i3 + 2] = -h;
-    break;
-
-  // Z edges
-  case 8:
-    positions[i3] = h;
-    positions[i3 + 1] = h;
-    positions[i3 + 2] = t;
-    break;
-
-  case 9:
-    positions[i3] = h;
-    positions[i3 + 1] = -h;
-    positions[i3 + 2] = t;
-    break;
-
-  case 10:
-    positions[i3] = -h;
-    positions[i3 + 1] = h;
-    positions[i3 + 2] = t;
-    break;
-
-  case 11:
-    positions[i3] = -h;
-    positions[i3 + 1] = -h;
-    positions[i3 + 2] = t;
-    break;
-}
-            
-
-        // ======================================
-        // DIRECTION
-        // ======================================
-
-        const direction =
-          getDirection();
-
-
-        // ======================================
-        // SPEED
-        // ======================================
-
-        const speed =
-          Math.random() *
-          (max - min) +
-          min;
-
-
-        // ======================================
-        // VELOCITY
-        // ======================================
-
-        velocities[i3] =
-          direction.x * speed;
-
-        velocities[i3 + 1] =
-          direction.y * speed;
-
-        velocities[i3 + 2] =
-          direction.z * speed;
-
-      }
-
-
-      positionAttribute.needsUpdate =
-        true;
-
-
-      exploded.current =
-        true;
-
-    }, [
-      count,
-      min,
-      max,
-      particles,
-      getDirection,
-    ]);
-
+  
 
      // ==========================================
   // KEYBOARD LISTENER
@@ -365,12 +183,24 @@ switch (edge) {
         ) {
           return;
         }
-
+       
 
         keyDown.current =
           true;
+         const points =
+        pointsRef.current;   
 
-        explode();
+        explode({
+        points,
+        positions: particles.positions,
+        velocities: particles.velocities,
+        count,
+        minSpeed: min,
+        maxSpeed: max,
+        getDirection,
+        });
+
+            exploded.current = true;
 
        playSound();
 

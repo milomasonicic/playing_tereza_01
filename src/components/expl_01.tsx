@@ -18,17 +18,22 @@ export default function Pano({
   height = 28.125,
   triggerKey,
   videoName,
-  shape,
+  shape = "plane",
   position1 = [0, 0, 0],
   sound = "outer",
 }: PanoProps) {
-  const materialRef =
-    useRef<THREE.MeshBasicMaterial>(null);
+  const materialRef = useRef<THREE.MeshBasicMaterial>(null);
+
+  // Čuvamo video element da možemo da ga play/pause-ujemo
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  const textureRef = useRef<THREE.VideoTexture | null>(null);
 
   const [texture, setTexture] =
     useState<THREE.VideoTexture | null>(null);
 
   const isPressed = useRef(false);
+
   const audio = useAudio();
 
   // ==============================
@@ -49,52 +54,91 @@ export default function Pano({
     const video = document.createElement("video");
 
     video.src = `/${videoName}`;
+
+    // Bitno za browser / Three.js
     video.loop = true;
     video.muted = true;
     video.playsInline = true;
-    video.autoplay = true;
 
-   
+    // Nemoj odmah učitavati ceo video
+    video.preload = "metadata";
+
+    // Čuvamo referencu
+    videoRef.current = video;
+
+    // ==============================
+    // VIDEO TEXTURE
+    // ==============================
+
     const videoTexture = new THREE.VideoTexture(video);
 
     videoTexture.colorSpace = THREE.SRGBColorSpace;
+
     videoTexture.minFilter = THREE.LinearFilter;
     videoTexture.magFilter = THREE.LinearFilter;
+
     videoTexture.generateMipmaps = false;
 
-    setTexture(videoTexture);  
+    textureRef.current = videoTexture;
 
-    video.play().catch(console.log);
+    setTexture(videoTexture);
+
+    // NE radimo video.play() ovde!
+    // Video će krenuti tek kada pritisneš dugme.
 
     return () => {
+      // Pauziraj video
       video.pause();
+
+      // Oslobodi video source
+      video.removeAttribute("src");
+      video.load();
+
+      // Oslobodi texture
       videoTexture.dispose();
-      video.remove();
+
+      // Očisti reference
+      videoRef.current = null;
+      textureRef.current = null;
     };
   }, [videoName]);
 
   // ==============================
-  // KEYBOARD TRIGGER
+  // KEYBOARD
   // ==============================
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      const key = event.key.toLowerCase();
+  const key = event.key.toLowerCase();
 
-      if (key !== triggerKey.toLowerCase()) {
-        return;
-      }
+  if (key !== triggerKey.toLowerCase()) {
+    return;
+  }
 
-      // Sprečava ponovno okidanje dok držiš dugme
-      if (isPressed.current) {
-        return;
-      }
+  // Sprečava ponovno okidanje dok držiš dugme
+  if (isPressed.current) {
+    return;
+  }
 
-      isPressed.current = true;
+  isPressed.current = true;
 
-      playSound();
-    };
+  // Pokreni video OD POČETKA
+  if (videoRef.current) {
+    const video = videoRef.current;
 
+    video.currentTime = 0;
+
+    video.play().catch((error) => {
+      console.error(
+        `Video "${videoName}" nije mogao da se pokrene:`,
+        error
+      );
+    });
+  }
+
+  // Pusti zvuk
+  playSound();
+};
     const handleKeyUp = (event: KeyboardEvent) => {
       const key = event.key.toLowerCase();
 
@@ -103,30 +147,21 @@ export default function Pano({
       }
 
       isPressed.current = false;
+
+      // Pauziraj video
+      if (videoRef.current) {
+        videoRef.current.pause();
+      }
     };
 
-    window.addEventListener(
-      "keydown",
-      handleKeyDown
-    );
-
-    window.addEventListener(
-      "keyup",
-      handleKeyUp
-    );
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
 
     return () => {
-      window.removeEventListener(
-        "keydown",
-        handleKeyDown
-      );
-
-      window.removeEventListener(
-        "keyup",
-        handleKeyUp
-      );
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
     };
-  }, [triggerKey, sound, audio]);
+  }, [triggerKey, videoName, sound, audio]);
 
   // ==============================
   // FADE
@@ -135,8 +170,7 @@ export default function Pano({
   useFrame((_, delta) => {
     if (!materialRef.current) return;
 
-    const targetOpacity =
-      isPressed.current ? 1 : 0;
+    const targetOpacity = isPressed.current ? 1 : 0;
 
     materialRef.current.opacity =
       THREE.MathUtils.damp(
@@ -147,7 +181,13 @@ export default function Pano({
       );
   });
 
-  if (!texture) return null;
+  // ==============================
+  // RENDER
+  // ==============================
+
+  if (!texture) {
+    return null;
+  }
 
   return (
     <mesh
