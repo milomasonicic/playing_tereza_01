@@ -1,9 +1,9 @@
-import { createContext, useContext, useRef } from "react";
+import { createContext, useContext, useEffect, useRef } from "react";
 import * as Tone from "tone";
 
 type AudioContextType = {
   playSound: (sound: string) => Promise<void>;
-  startNoise: () => Promise<void>;
+  startNoise: (pitch: number) => Promise<void>;
   stopNoise: () => void;
 };
 
@@ -16,42 +16,66 @@ export function AudioProvider({
 }) {
   const players = useRef<Record<string, Tone.Player>>({});
 
-  // OVO TI JE FALILO
   const noiseRef = useRef<Tone.Noise | null>(null);
+  const pitchShiftRef = useRef<Tone.PitchShift | null>(null);
+
+  // Kreiramo samo jednom
+  useEffect(() => {
+    const pitchShift = new Tone.PitchShift({
+      pitch: 11,
+      wet: 1,
+    }).toDestination();
+
+    const noise = new Tone.Noise({
+      type: "brown",
+      volume: -8,
+    });
+
+    noise.connect(pitchShift);
+
+    noiseRef.current = noise;
+    pitchShiftRef.current = pitchShift;
+
+    return () => {
+      noise.stop();
+      noise.dispose();
+      pitchShift.dispose();
+
+      noiseRef.current = null;
+      pitchShiftRef.current = null;
+    };
+  }, []);
 
   const playSound = async (sound: string) => {
     await Tone.start();
 
-    // Ako je zvuk već učitan, koristi postojeći Player
     if (players.current[sound]) {
       players.current[sound].start();
       return;
     }
 
-    // Napravi novog Player-a za taj zvuk
     const player = new Tone.Player(`/sounds/${sound}`).toDestination();
 
     players.current[sound] = player;
 
-    // Sačekaj da se učita pa ga pusti
     await Tone.loaded();
 
     player.start();
   };
 
-  const startNoise = async () => {
+  const startNoise = async (pitch: number) => {
     await Tone.start();
 
-    // Ako noise već postoji, nemoj praviti novi
-    if (noiseRef.current) {
-      return;
+    const noise = noiseRef.current;
+    const pitchShift = pitchShiftRef.current;
+
+    if (!noise || !pitchShift) return;
+
+    pitchShift.pitch = pitch;
+
+    if (noise.state !== "started") {
+      noise.start();
     }
-
-    const noise = new Tone.Noise("white").toDestination();
-
-    noiseRef.current = noise;
-
-    noise.start();
   };
 
   const stopNoise = () => {
@@ -59,10 +83,9 @@ export function AudioProvider({
 
     if (!noise) return;
 
-    noise.stop();
-    noise.dispose();
-
-    noiseRef.current = null;
+    if (noise.state === "started") {
+      noise.stop();
+    }
   };
 
   return (

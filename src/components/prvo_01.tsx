@@ -16,12 +16,15 @@ export default function  Prvo1()
 
     return(
         <>
+             
+
           <PanoNoise width={35}
                         height={35} 
                         triggerKey="l"
                         videoName="output111.webm"
                         shape="circle"
                         position1={[0, 0, 0]}
+                        pitch={38}
                         ></PanoNoise>                                              
         
         
@@ -32,6 +35,7 @@ export default function  Prvo1()
                         videoName="jako.webm"
                         shape="circle"
                         position1={[0, 0, 0]}
+                        pitch={31}
                         ></PanoNoise> 
 
           
@@ -41,8 +45,23 @@ export default function  Prvo1()
                         videoName="dan.webm"
                         shape="circle"
                         position1={[0, 0, 0]}
-                        ></PanoNoise>                                                            
-        
+                        pitch={16}
+                        ></PanoNoise>  
+
+          <PanoNoise width={35}
+                        height={35} 
+                        triggerKey="g"
+                        videoName="eee1.webm"
+                        shape="plane"
+                        position1={[0, 0, 0]}
+                        pitch={46}
+                        ></PanoNoise>
+       
+                                                                                   
+        <Sound triggerKey="h"
+        position1={[0, 0, 0]}
+        sound = "wav (3).wav"
+        ></Sound>
         </>
     )
 }

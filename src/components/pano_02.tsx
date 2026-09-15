@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { useEffect, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useAudio } from "../audio/AudioProvider";
+import { useKeyboard } from "../providers/Keyboard";
 
 type PanoProps = {
   width?: number;
@@ -10,6 +11,7 @@ type PanoProps = {
   videoName: string;
   shape?: "plane" | "circle";
   position1?: [number, number, number];
+  pitch?: number;
 };
 
 export default function PanoNoise({
@@ -19,10 +21,11 @@ export default function PanoNoise({
   videoName,
   shape = "plane",
   position1 = [0, 0, 0],
+  pitch = 11,
 }: PanoProps) {
   const materialRef = useRef<THREE.MeshBasicMaterial>(null);
 
-  // Čuvamo video element da možemo da ga play/pause-ujemo
+  // Čuvamo video element
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const textureRef = useRef<THREE.VideoTexture | null>(null);
@@ -30,9 +33,16 @@ export default function PanoNoise({
   const [texture, setTexture] =
     useState<THREE.VideoTexture | null>(null);
 
-  const isPressed = useRef(false);
-
   const audio = useAudio();
+
+  // ==============================
+  // KEYBOARD
+  // ==============================
+
+  const keys = useKeyboard();
+
+  const isPressed =
+    keys[triggerKey.toLowerCase() as keyof typeof keys];
 
   // ==============================
   // VIDEO
@@ -43,15 +53,11 @@ export default function PanoNoise({
 
     video.src = `/${videoName}`;
 
-    // Bitno za browser / Three.js
     video.loop = true;
     video.muted = true;
     video.playsInline = true;
-
-    // Nemoj odmah učitavati ceo video
     video.preload = "metadata";
 
-    // Čuvamo referencu
     videoRef.current = video;
 
     // ==============================
@@ -71,102 +77,49 @@ export default function PanoNoise({
 
     setTexture(videoTexture);
 
-    // NE radimo video.play() ovde!
-    // Video će krenuti tek kada pritisneš dugme.
-
     return () => {
-      // Pauziraj video
       video.pause();
 
-      // Oslobodi video source
       video.removeAttribute("src");
       video.load();
 
-      // Oslobodi texture
       videoTexture.dispose();
 
-      // Očisti reference
       videoRef.current = null;
       textureRef.current = null;
     };
   }, [videoName]);
 
   // ==============================
-  // KEYBOARD
+  // PLAY / STOP
   // ==============================
 
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      const key = event.key.toLowerCase();
+    const video = videoRef.current;
 
-      if (key !== triggerKey.toLowerCase()) {
-        return;
-      }
+    if (!video) return;
 
-      // Sprečava ponovno okidanje dok držiš dugme
-      if (isPressed.current) {
-        return;
-      }
+    if (isPressed) {
+      // Pokreni video OD POČETKA
+      video.currentTime = 0;
 
-      isPressed.current = true;
+      video.play().catch((error) => {
+        console.error(
+          `Video "${videoName}" nije mogao da se pokrene:`,
+          error
+        );
+      });
 
-      // ==============================
-      // VIDEO START
-      // ==============================
+      // Noise START
+      audio?.startNoise(pitch);
+    } else {
+      // Video STOP
+      video.pause();
 
-      if (videoRef.current) {
-        const video = videoRef.current;
-
-        // Pokreni video OD POČETKA
-        video.currentTime = 0;
-
-        video.play().catch((error) => {
-          console.error(
-            `Video "${videoName}" nije mogao da se pokrene:`,
-            error
-          );
-        });
-      }
-
-      // ==============================
-      // NOISE START
-      // ==============================
-
-      audio?.startNoise();
-    };
-
-    const handleKeyUp = (event: KeyboardEvent) => {
-      const key = event.key.toLowerCase();
-
-      if (key !== triggerKey.toLowerCase()) {
-        return;
-      }
-
-      isPressed.current = false;
-
-      // ==============================
-      // VIDEO STOP
-      // ==============================
-
-      if (videoRef.current) {
-        videoRef.current.pause();
-      }
-
-      // ==============================
-      // NOISE STOP
-      // ==============================
-
+      // Noise STOP
       audio?.stopNoise();
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("keyup", handleKeyUp);
-    };
-  }, [triggerKey, videoName, audio]);
+    }
+  }, [isPressed, videoName, audio, pitch]);
 
   // ==============================
   // FADE
@@ -175,7 +128,7 @@ export default function PanoNoise({
   useFrame((_, delta) => {
     if (!materialRef.current) return;
 
-    const targetOpacity = isPressed.current ? 1 : 0;
+    const targetOpacity = isPressed ? 1 : 0;
 
     materialRef.current.opacity = THREE.MathUtils.damp(
       materialRef.current.opacity,
