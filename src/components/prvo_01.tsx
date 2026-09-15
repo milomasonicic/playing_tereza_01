@@ -1,6 +1,7 @@
 
 import Pano from "./expl_01"
 import Sound from "./Sound1";
+import PanoNoise from "./pano_02";
 import Explosion from "./Particles2";
 import Expl_nova_funkc from "./expl_nova1001";
 import Expl_nova0222 from "./expl_nova11";
@@ -15,7 +16,40 @@ export default function  Prvo1()
 
     return(
         <>
-           
+          <PanoNoise width={35}
+                        height={35} 
+                        triggerKey="l"
+                        videoName="output111.webm"
+                        shape="circle"
+                        position1={[0, 0, 0]}
+                        ></PanoNoise>                                              
+        
+        
+
+        <PanoNoise width={35}
+                        height={35} 
+                        triggerKey="k"
+                        videoName="jako.webm"
+                        shape="circle"
+                        position1={[0, 0, 0]}
+                        ></PanoNoise> 
+
+          
+        <PanoNoise width={35}
+                        height={35} 
+                        triggerKey="j"
+                        videoName="dan.webm"
+                        shape="circle"
+                        position1={[0, 0, 0]}
+                        ></PanoNoise>                                                            
+        
+        </>
+    )
+}
+
+/*
+
+
                        <Pano 
                         width={35}
                         height={35} 
@@ -44,14 +78,13 @@ export default function  Prvo1()
                                      position1={[0, 0, 0]}
                                      sound="raz3.wav"></Pano>
                                      
-                                    <Sound></Sound>
-                                                                                  
-        
-        </>
-    )
-}
+                                    <Sound 
+                                    triggerKey="h"
+                                    sound="wav (3).wav"></Sound>
+                                     
 
-/*
+
+
 00.20.05
 
 deca24.0.mov
