@@ -16,7 +16,7 @@ export default function Prvo11(){
                         ></PanoNoise>
        
                                                                                    
-        <Sound triggerKey="h"
+        <Sound triggerKey="f"
         position1={[0, 0, 0]}
         sound = "wav (3).wav"
         ></Sound>
