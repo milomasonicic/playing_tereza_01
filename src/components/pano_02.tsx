@@ -166,6 +166,7 @@ export default function PanoNoise({
         map={texture}
         toneMapped={false}
         side={THREE.DoubleSide}
+         depthWrite={false}
         transparent
         opacity={0}
       />

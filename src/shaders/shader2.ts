@@ -3,7 +3,8 @@ import { extend } from "@react-three/fiber";
 
 const TwistMaterial2 = shaderMaterial(
   {
-    uColor: [0.2, 0.5, 1.0],
+    uColor1: [0.015, 0.035, 0.20],
+    uColor2: [0.75, 0.06, 0.32],
      uTime: 0, 
      uActive: 0
 
@@ -80,6 +81,8 @@ varying vec3 vPosition;
 varying vec3 vNormal;
 varying vec3 vWorldPosition;
 uniform float uActive;
+uniform vec3 uColor1;
+uniform vec3 uColor2;
 
 uniform float uTime;
 
@@ -89,8 +92,8 @@ void main() {
     // PINK / BLUE MATERIAL
     // =========================================
 
-    vec3 blue = vec3(0.015, 0.035, 0.20);
-vec3 pink = vec3(0.75, 0.06, 0.32);
+    vec3 blue = uColor1;
+vec3 pink = uColor2;
 
     // vrlo širok, spor gradient
     float g =
