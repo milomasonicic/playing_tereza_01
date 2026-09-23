@@ -49,14 +49,42 @@ export default function St11(){
         color2={[0, 0.2, 0.9]}>
         </Sound22>   
 
+       
+        <Sound33  
+        triggerKey="j"  
+        position1={[20, 0, 0]}  
+        sound="wav (3).wav"  
+        color1={[0, 0, 1]}  
+        color2={[0, 0.2, 0.9]}  
+        sirenje={3.9}  
+        rotation1={[0.0, 0.1, 0]} 
+        >
+        </Sound33>
+
+        <Sound33  
+        triggerKey="j"  
+        position1={[20, 0, 1]}  
+        sound="wav (3).wav"  
+        color1={[0, 0, 1]}  
+        color2={[0, 0.2, 0.9]}  
+        sirenje={3.9}  
+        rotation1={[0.0, 0.1, 0]} 
+        >
+        </Sound33>
+
 
         
-       <Sound33 triggerKey="j"
-        position1={[-15, 0, 0]}
-        sound = "wav (3).wav"
-        color1={[0, 0, 1]}
-        color2={[0, 0.2, 0.9]}>
-        </Sound33>     
+        <PanoNoise width={35}
+                        height={35} 
+                        triggerKey="k"
+                        videoName="jek.mp4"
+                        shape="plane"
+                        position1={[20, 0, 0]}
+                        pitch={30}
+                        ></PanoNoise>
+
+        
+
         </>
     )
 }

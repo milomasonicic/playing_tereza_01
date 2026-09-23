@@ -5,7 +5,8 @@ import * as THREE from "three";
 
 export function useM111(
   linesRef: RefObject<LineSegments | null>,
-  active: RefObject<boolean>
+  active: RefObject<boolean>,
+  sirenje:number
 ) {
   useFrame((_, delta) => {
     const lines = linesRef.current;
@@ -16,7 +17,7 @@ export function useM111(
     // SCALE ANIMATION
     // ==========================================
 
-    const targetScale = active.current ? 2 : 1;
+    const targetScale = active.current ? sirenje : 1;
 
     lines.scale.x = THREE.MathUtils.lerp(
       lines.scale.x,
