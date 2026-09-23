@@ -8,6 +8,7 @@ import Expl_nova0222 from "./expl_nova11";
 import { getDirectionNova } from "../function/getdirection";
 import { getDirectionNova1 } from "../function/getdirection";
 import { explode4 } from "../function/explode";
+import PanoPhoto1 from "./pano_03";
 
 
 
@@ -27,7 +28,7 @@ export default function  Prvo1()
                         pitch={38}
                         ></PanoNoise>                                              
         
-        
+     
 
         <PanoNoise width={35}
                         height={35} 
@@ -46,7 +47,15 @@ export default function  Prvo1()
                         shape="circle"
                         position1={[0, 0, 0]}
                         pitch={16}
-                        ></PanoNoise>  
+                        ></PanoNoise>
+
+        <PanoPhoto1 width={35}
+                        height={35} 
+                        triggerKey="a"
+                        imageName="dark.png"
+                        shape="circle"
+                        position1={[0, 0, 0]}
+                        pitch={16}></PanoPhoto1>                  
 
           
         </>
