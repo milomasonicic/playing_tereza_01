@@ -19,8 +19,8 @@ export function useM111(
 
     const targetScale = active.current ? sirenje : 1;
 
-    lines.scale.x = THREE.MathUtils.lerp(
-      lines.scale.x,
+    lines.scale.y = THREE.MathUtils.lerp(
+      lines.scale.y,
       targetScale,
       delta * 5
     );
