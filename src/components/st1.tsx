@@ -33,7 +33,7 @@ function St11011Content() {
 export default function St11011() {
   return (
     <BeatProvider
-      bpm={68}
+      bpm={128}
       pattern={[
         {
           key: "a",
@@ -43,7 +43,7 @@ export default function St11011() {
         {
           key: "a",
           videoName: "output111.webm",
-          pitch: 11,
+          pitch: 21,
         },
       ]}
     >
