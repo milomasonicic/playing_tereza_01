@@ -2,6 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
 import { KeyboardProvider } from "./providers/Keyboard";
 import { AudioProvider } from "./audio/AudioProvider";
+
 import Scena1 from "./components/Scena1";
 import Scena2 from "./components/Scena2";
 import Scena3 from "./components/Scena3";
@@ -17,6 +18,7 @@ import Prvo_nastavak from "./components/Pravo2";
 import Prvo1 from "./components/prvo_01";
 import Prvo11 from "./components/Pr";
 import St11 from "./components/st";
+import St11011 from "./components/st1";
 
 /*import Scena2 from "./components/Scena2";
 import Scena3 from "./components/Scena3";
@@ -52,6 +54,7 @@ function SceneCanvas() {
     >
       <AudioProvider>
       <KeyboardProvider>
+        
 
         <Routes>
           <Route path="/" element={<Scena1 />} />
@@ -70,6 +73,7 @@ function SceneCanvas() {
           <Route path="/try" element={<Prvo1/>} />
           <Route path="/try1" element={<Prvo11/>} />
           <Route path="/try11" element={<St11/>} />
+          <Route path="/try111" element={<St11011/>} />
           
         </Routes>
 

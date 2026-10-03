@@ -26,7 +26,7 @@ export default function St11(){
 
         <PanoNoise width={35}
                         height={35} 
-                        triggerKey="a"
+                        triggerKey="l"
                         videoName="jek.mp4"
                         shape="plane"
                         position1={[-27, 0, 0]}

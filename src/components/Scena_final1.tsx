@@ -173,7 +173,7 @@ export default function ScenaFinal()
                              position={[-12, 0, 0]}
                             triggerKey1="a"
                             type={2}
-                            sound="dobra1.wav"
+                            sound="raj2.wav"
                             color={[2.5, 0.05, 0.08]}
                             intensity={23.5}
                           /> 
