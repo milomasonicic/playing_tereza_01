@@ -6,13 +6,25 @@ import {
   useBeat,
 } from "../providers/BeatProvider";
 
+
 function St11011Content() {
-  const { start, stop } = useBeat();
+   const { start, stop } = useBeat();
 
   useEffect(() => {
-    start();
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.code === "KeyQ") {
+        start();
+      }
+
+      if (event.code === "KeyW") {
+        stop();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
+      window.removeEventListener("keydown", handleKeyDown);
       stop();
     };
   }, [start, stop]);
