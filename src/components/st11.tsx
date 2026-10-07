@@ -7,7 +7,7 @@ import {
 } from "../providers/BeatProvider";
 
 
-function St11011Content() {
+function St2() {
    const { start, stop } = useBeat();
 
   useEffect(() => {
@@ -32,7 +32,7 @@ function St11011Content() {
   return (
     <PanoBeat
       triggerKey="a"
-      videoName="m1.mp4"
+      videoName="m100aa.webm"
       pitch={11}
       width={40}
       height={40}
@@ -42,52 +42,59 @@ function St11011Content() {
   );
 }
 
-export default function St11011() {
+export default function St222() {
   return (
     <BeatProvider
-      bpm={58}
+      bpm={238}
       pattern={[
         {
           key: "a",
-          videoName: "m5.mp4",
-          pitch: 1,
+          videoName: "m106aa.webm",
+          pitch: 15,
         },
         {
           key: "a",
-          videoName: "m3.mp4",
-          pitch: 21,
+          videoName: "m108aa.webm",
+          pitch: 7,
         },
         {
           key: "a",
-          videoName: "m7a.webm",
+          videoName: "m109aa.webm",
           pitch: 11,
         },
         {
           key: "a",
-          videoName: "m77a.webm",
-          pitch: 31,
-        },
-        {
-          key: "a",
-          videoName: "m89a.webm",
-          pitch: 38,
-        },
-        {
-          key: "a",
-          videoName: "m93aa.webm",
-          pitch: 8,
-        },
-        {
-          key: "a",
-          videoName: "m94aa.webm",
-          pitch: 12,
-        },
-        {
-          key: "a",
-          videoName: "m97aa.webm",
+          videoName: "m110aa.webm",
           pitch: 25,
-        }
-      /*  
+        },
+        {
+          key: "a",
+          videoName: "m111aa.webm",
+          pitch: 35,
+        },
+        {
+          key: "a",
+          videoName: "m112aa.webm",
+          pitch: 45,
+        },
+        {
+          key: "a",
+          videoName: "m114aa.webm",
+          pitch: 55,
+        },
+        {
+          key: "a",
+          videoName: "m117aa.webm",
+          pitch: 65,
+        },
+        {
+          key: "a",
+          videoName: "m118aa.webm",
+          pitch: 20,
+        },
+        
+      /* 
+      m101aa 
       m89a
       {
           key: "a",
@@ -102,7 +109,7 @@ export default function St11011() {
         },*/
       ]}
     >
-      <St11011Content />
+      <St2 />
     </BeatProvider>
   );
 }
