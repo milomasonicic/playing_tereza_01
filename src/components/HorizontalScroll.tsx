@@ -22,26 +22,22 @@ const PANOS = [
   "m131aa.webm",
 ];
 
-export default function HorizontallScroll() {
+interface HorizontallScrollProps {
+  rotationSpeed?: number;
+  radius?: number;
+  panoWidth?: number;
+  panoHeight?: number;
+  position1?: [number, number, number];
+}
+
+export default function HorizontallScroll({
+  rotationSpeed = 0.25,
+  radius = 220,
+  panoWidth = 95,
+  panoHeight = 95,
+  position1 = [0, -50, 0],
+}: HorizontallScrollProps) {
   const groupRef = useRef<THREE.Group>(null);
-
-  // =========================
-  // PODESAVANJA
-  // =========================
-
-  // Brzina rotacije
-  const rotationSpeed = 1.5;
-
-  // Veličina kruga
-  const radius = 120;
-
-  // Veličina panoa
-  const panoWidth = 55;
-  const panoHeight = 55;
-
-  // =========================
-  // ANIMACIJA
-  // =========================
 
   useFrame((state, delta) => {
     if (!groupRef.current) return;
@@ -51,7 +47,6 @@ export default function HorizontallScroll() {
 
   return (
     <group ref={groupRef}>
-
       {PANOS.map((videoName, index) => {
         const angle =
           (index / PANOS.length) * Math.PI * 2;
@@ -70,12 +65,11 @@ export default function HorizontallScroll() {
               width={panoWidth}
               height={panoHeight}
               shape="plane"
-              position1={[0, -40, 0]}
+              position1={position1}
             />
           </group>
         );
       })}
-
     </group>
   );
 }
