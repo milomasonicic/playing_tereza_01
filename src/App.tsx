@@ -20,14 +20,7 @@ import Prvo11 from "./components/Pr";
 import St11 from "./components/st";
 import St11011 from "./components/st1";
 import St222 from "./components/st11";
-
-/*import Scena2 from "./components/Scena2";
-import Scena3 from "./components/Scena3";
-
-<Route path="/scena2" element={<Scena2 />} />
-<Route path="/scena3" element={<Scena3 />} />
-
-*/
+import St3 from "./components/st3";
 
 import {
   EffectComposer,
@@ -40,46 +33,52 @@ import {
   Route,
 } from "react-router-dom";
 
-
 function SceneCanvas() {
   return (
     <Canvas
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+      }}
       camera={{
         position: [0, 20, 50],
         fov: 50,
       }}
       onCreated={({ scene }) => {
-        ///scene.background = new THREE.Color("#012566");
         scene.background = new THREE.Color("#111111");
       }}
     >
       <AudioProvider>
-      <KeyboardProvider>
-        
+        <KeyboardProvider>
 
-        <Routes>
-          <Route path="/" element={<Scena1 />} />
-          
-          <Route path="/scena2" element={<Scena2 />} />
-          <Route path="/scena3" element={<Scena3 />} />
-          <Route path="/scena4" element={<Scena4 />} />
-          <Route path="/scena5" element={<Scena5 />} />
-          <Route path="/scena6" element={<Scena6 />} />
-          <Route path="/test" element={<ScenaFinal />} />
-          <Route path="/druga" element={<Druga_sc/>} />
-          <Route path="/test11" element={<Test1/>} />
-          <Route path="/test12" element={<Test2/>} />
-          <Route path="/prvo" element={<Prvo/>} />
-          <Route path="/prvo_nastavak" element={<Prvo_nastavak/>} />
-          <Route path="/try" element={<Prvo1/>} />
-          <Route path="/try1" element={<Prvo11/>} />
-          <Route path="/try11" element={<St11/>} />
-          <Route path="/try111" element={<St11011/>} />
-          <Route path="/figura1" element={<St222/>} />
-          
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Scena1 />} />
+            <Route path="/scena2" element={<Scena2 />} />
+            <Route path="/scena3" element={<Scena3 />} />
+            <Route path="/scena4" element={<Scena4 />} />
+            <Route path="/scena5" element={<Scena5 />} />
+            <Route path="/scena6" element={<Scena6 />} />
+            <Route path="/test" element={<ScenaFinal />} />
+            <Route path="/druga" element={<Druga_sc />} />
+            <Route path="/test11" element={<Test1 />} />
+            <Route path="/test12" element={<Test2 />} />
+            <Route path="/prvo" element={<Prvo />} />
+            <Route
+              path="/prvo_nastavak"
+              element={<Prvo_nastavak />}
+            />
+            <Route path="/try" element={<Prvo1 />} />
+            <Route path="/try1" element={<Prvo11 />} />
+            <Route path="/try11" element={<St11 />} />
+            <Route path="/try111" element={<St11011 />} />
+            <Route path="/figura1" element={<St222 />} />
+            <Route path="/figura2" element={<St3 />} />
+          </Routes>
 
-      </KeyboardProvider>
+        </KeyboardProvider>
       </AudioProvider>
 
       <EffectComposer>
@@ -93,11 +92,21 @@ function SceneCanvas() {
   );
 }
 
-
 export default function App() {
   return (
     <BrowserRouter>
+
+      {/* OVO pravi pravi browser scroll */}
+      <div
+        style={{
+          height: "400vh",
+          width: "100%",
+          pointerEvents: "none",
+        }}
+      />
+
       <SceneCanvas />
+
     </BrowserRouter>
   );
 }
