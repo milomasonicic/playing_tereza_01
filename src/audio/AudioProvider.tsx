@@ -9,6 +9,11 @@ type AudioContextType = {
 
   startSynth: (pitch: number) => Promise<void>;
   stopSynth: () => void;
+  
+  // NOVO
+  startRotationSound: (speed: number) => Promise<void>;
+  setRotationSound: (speed: number) => void;
+  stopRotationSound: () => void;
 };
 
 const AudioContext = createContext<AudioContextType | null>(null);
@@ -198,25 +203,6 @@ synthRef.current = synth;
    
   };
 
-  // poli sint za nesto drugo 
-  /*const synth = new Tone.PolySynth(Tone.Synth, {
-  oscillator: {
-    type: "sine",
-  },
-
-  envelope: {
-    attack: 1.2,
-    decay: 1.5,
-    sustain: 0.65,
-    release: 3,
-  },
-
-  volume: -10,
-});*/
-
-  // ==============================
-  // STOP SYNTH
-  // ==============================
 
   const stopSynth = () => {
     const synth = synthRef.current;
@@ -225,6 +211,48 @@ synthRef.current = synth;
 
     synth.triggerRelease();
   };
+
+
+  // ==============================
+// ROTATION SOUND
+// ==============================
+
+const startRotationSound = async (speed: number) => {
+  await Tone.start();
+
+  const synth = synthRef.current;
+
+  if (!synth) return;
+
+  // Brzinu pretvaramo u pitch
+  // 0 -> -12 semitona
+  // 200 -> +12 semitona
+  const pitch = (speed / 200) * 48 - 12;
+
+  synth.detune.value = pitch;
+
+  // Pokreni zvuk
+  synth.triggerAttack("A3");
+};
+
+const setRotationSound = (speed: number) => {
+  const synth = synthRef.current;
+
+  if (!synth) return;
+
+  const pitch = (speed / 200) * 48 - 12;
+
+  // glatka promjena pitcha
+  synth.detune.rampTo(pitch, 0.15);
+};
+
+const stopRotationSound = () => {
+  const synth = synthRef.current;
+
+  if (!synth) return;
+
+  synth.triggerRelease();
+};
 
   // ==============================
   // PROVIDER
@@ -240,6 +268,9 @@ synthRef.current = synth;
 
         startSynth,
         stopSynth,
+        startRotationSound,
+        setRotationSound,
+        stopRotationSound
       }}
     >
       {children}

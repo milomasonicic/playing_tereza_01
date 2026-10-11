@@ -1,19 +1,52 @@
 import { useEffect, useState } from "react";
 import HorizontallScroll from "./HorizontalScroll";
+import { useAudio } from "../audio/AudioProvider";
 
 export default function St3() {
   const [rotationSpeed, setRotationSpeed] = useState(111.825);
 
+  const audio = useAudio();
+
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      // DESNA STRELICA = ubrzaj
-      if (event.code === "ArrowRight") {
-        setRotationSpeed((prev) => prev + 10);
+      // ==============================
+      // Q = POKRENI ZVUK
+      // ==============================
+      if (event.code === "KeyQ") {
+        audio?.startRotationSound(rotationSpeed);
       }
 
-      // LIJEVA STRELICA = uspori
+      // ==============================
+      // W = ZAUSTAVI ZVUK
+      // ==============================
+      if (event.code === "KeyW") {
+        audio?.stopRotationSound();
+      }
+
+      // ==============================
+      // DESNA STRELICA = UBRZAJ
+      // ==============================
+      if (event.code === "ArrowRight") {
+        setRotationSpeed((prev) => {
+          const newSpeed = prev + 10;
+
+          audio?.setRotationSound(newSpeed);
+
+          return newSpeed;
+        });
+      }
+
+      // ==============================
+      // LIJEVA STRELICA = USPORI
+      // ==============================
       if (event.code === "ArrowLeft") {
-        setRotationSpeed((prev) => Math.max(0, prev - 10));
+        setRotationSpeed((prev) => {
+          const newSpeed = Math.max(0, prev - 10);
+
+          audio?.setRotationSound(newSpeed);
+
+          return newSpeed;
+        });
       }
     };
 
@@ -22,7 +55,7 @@ export default function St3() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [audio, rotationSpeed]);
 
   return (
     <>
