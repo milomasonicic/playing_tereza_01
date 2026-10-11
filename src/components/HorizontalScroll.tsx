@@ -1,5 +1,5 @@
 import PanoNoise03 from "./pano_05";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -39,11 +39,42 @@ export default function HorizontallScroll({
 }: HorizontallScrollProps) {
   const groupRef = useRef<THREE.Group>(null);
 
+  // Da li je cijeli element vidljiv
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Q = pojavi
+      if (event.code === "KeyQ") {
+        setIsVisible(true);
+      }
+
+      // W = nestani
+      if (event.code === "KeyW") {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   useFrame((state, delta) => {
     if (!groupRef.current) return;
 
-    groupRef.current.rotation.y += delta * rotationSpeed;
+    // Rotacija samo dok je element vidljiv
+    if (isVisible) {
+      groupRef.current.rotation.y += delta * rotationSpeed;
+    }
   });
+
+  // Ako nije vidljivo, ne renderujemo ništa
+  if (!isVisible) {
+    return null;
+  }
 
   return (
     <group ref={groupRef}>
