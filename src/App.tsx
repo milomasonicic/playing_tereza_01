@@ -21,6 +21,7 @@ import St11 from "./components/st";
 import St11011 from "./components/st1";
 import St222 from "./components/st11";
 import St3 from "./components/st3";
+import StContent1 from "./components/st12";
 
 import {
   EffectComposer,
@@ -76,6 +77,7 @@ function SceneCanvas() {
             <Route path="/try111" element={<St11011 />} />
             <Route path="/figura1" element={<St222 />} />
             <Route path="/figura2" element={<St3 />} />
+            <Route path="/figura3" element={<StContent1 />} />
           </Routes>
 
         </KeyboardProvider>

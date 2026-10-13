@@ -2,13 +2,13 @@ import * as THREE from "three";
 import { useEffect, useState } from "react";
 
 interface ImageContainerProps {
-  videoName: string;
+  video1: string;
   width?: number;
   height?: number;
 }
 
 export default function ImageContainer({
-  videoName,
+  video1,
   width = 5.3,
   height = 3.3,
 }: ImageContainerProps) {
@@ -17,11 +17,11 @@ export default function ImageContainer({
 
   useEffect(() => {
 
-     console.log("VIDEO NAME:", videoName);
+     console.log("VIDEO NAME:", video1);
 
     const video = document.createElement("video");
 
-    video.src = `/${videoName}`;
+    video.src = `/${video1}`;
     video.muted = true;
     video.loop = true;
     video.playsInline = true;
@@ -63,7 +63,7 @@ export default function ImageContainer({
       video.load();
       videoTexture.dispose();
     };
-  }, [videoName]);
+  }, [video1]);
 
   return (
     <mesh>

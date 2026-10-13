@@ -45,7 +45,7 @@ function St2() {
 export default function St222() {
   return (
     <BeatProvider
-      bpm={238}
+      bpm={338}
       pattern={[
         {
           key: "a",
@@ -64,41 +64,39 @@ export default function St222() {
         },
         {
           key: "a",
-          videoName: "p114.webm",
+          videoName: "p117c.webm",
           pitch: 25,
         },
         {
           key: "a",
-          videoName: "p115a.webm",
+          videoName: "p117cc.webm",
           pitch: 35,
         },
+         {
+          key: "a",
+          videoName: "p117cc21.webm",
+          pitch: 35,
+        },
+         
         {
           key: "a",
-          videoName: "p115b.webm",
-          pitch: 45,
+          videoName: "p117cc3.webm",
+          pitch: 35,
         },
+       
+       
         {
           key: "a",
-          videoName: "p115c.webm",
-          pitch: 55,
+          videoName: "p117cc2.webm",
+          pitch: 35,
         },
-        {
-          key: "a",
-          videoName: "m131aa.webm",
-          pitch: 65,
-        },
-        {
-          key: "a",
-          videoName: "m118aa.webm",
-          pitch: 20,
-        },
-        {
-          key: "a",
-          videoName: "m126aa.webm",
-          pitch: 31,
-        },
+
+       
         
       /* 
+p117cc3
+      p117cc21 
+      p117ccc
       m101aa 
       m89a
       {
