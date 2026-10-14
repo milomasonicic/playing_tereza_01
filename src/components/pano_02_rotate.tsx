@@ -13,6 +13,7 @@ type PanoProps = {
   shape?: "plane" | "circle";
   position1?: [number, number, number];
   pitch?: number;
+  speed?: number;
 };
 
 export default function PanoNoiseRotate ({
@@ -23,6 +24,7 @@ export default function PanoNoiseRotate ({
   shape = "plane",
   position1 = [0, 0, 0],
   pitch = 11,
+  speed = 11,
 }: PanoProps) {
   const materialRef = useRef<THREE.MeshBasicMaterial>(null);
 
@@ -124,7 +126,7 @@ export default function PanoNoiseRotate ({
     }
 }, [isPressed, videoName, audio, pitch]);
 
-useRotateY(meshRef, isPressed, 111111.5);
+useRotateY(meshRef, isPressed, speed);
   // ==============================
   // FADE
   // ==============================
@@ -151,6 +153,7 @@ useRotateY(meshRef, isPressed, 111111.5);
   }
 
   return (
+    <>
     <mesh
     ref={meshRef}
       position={position1}
@@ -177,5 +180,33 @@ useRotateY(meshRef, isPressed, 111111.5);
         opacity={0}
       />
     </mesh>
+
+    <mesh
+    ref={meshRef}
+      position={position1}
+      rotation={[
+        THREE.MathUtils.degToRad(-21.8),
+        0,
+        0,
+      ]}
+    >
+      {shape === "circle" ? (
+        <circleGeometry args={[width / 2, 64]} />
+      ) : (
+        <planeGeometry args={[width, height]} />
+      )}
+
+      <meshBasicMaterial
+       
+        ref={materialRef}
+        map={texture}
+        toneMapped={false}
+        side={THREE.DoubleSide}
+         depthWrite={false}
+        transparent
+        opacity={2}
+      />
+    </mesh>
+    </>
   );
 }
