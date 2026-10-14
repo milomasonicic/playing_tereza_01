@@ -3,8 +3,11 @@ import * as Tone from "tone";
 
 type AudioContextType = {
   playSound: (sound: string) => Promise<void>;
+  startSound: (sound: string) => Promise<void>;
+  stopSound: (sound: string) => void;
 
   startNoise: (pitch: number) => Promise<void>;
+  startNoise1: (pitch: number) => Promise<void>;
   stopNoise: () => void;
 
   startSynth: (pitch: number) => Promise<void>;
@@ -254,6 +257,69 @@ const stopRotationSound = () => {
   synth.triggerRelease();
 };
 
+
+  // ==============================
+  // STAR + STOP SOUND
+  // ==============================
+
+const startSound = async (sound: string) => {
+  await Tone.start();
+
+  let player = players.current[sound];
+
+  if (!player) {
+    player = new Tone.Player(
+      `/sounds/${sound}`
+    ).toDestination();
+
+    players.current[sound] = player;
+
+    await Tone.loaded();
+  }
+
+  // Ako je već aktivan, nemoj ga ponovo pokretati
+  if (player.state === "started") return;
+
+  player.start();
+};
+
+const stopSound = (sound: string) => {
+  const player = players.current[sound];
+
+  if (!player) return;
+
+  if (player.state === "started") {
+    player.stop();
+  }
+};
+
+
+  // ==============================
+  // StopNoise1 + StartNoise1
+  // ==============================
+
+
+const startNoise1 = async (pitch: number) => {
+  await Tone.start();
+
+  const synth = new Tone.Synth({
+    oscillator: {
+      type: "triangle",
+    },
+    envelope: {
+      attack: 0.5,
+      decay: 0.0035,
+      sustain: 0.15,
+      release: 1.2,
+    },
+  }).toDestination();
+
+  synth.triggerAttackRelease(
+    Tone.Frequency(15).transpose(pitch).toFrequency(),
+    "1n"
+  );
+};
+
   // ==============================
   // PROVIDER
   // ==============================
@@ -262,10 +328,11 @@ const stopRotationSound = () => {
     <AudioContext.Provider
       value={{
         playSound,
-
+        startSound,
+        stopSound,
         startNoise,
         stopNoise,
-
+        startNoise1,
         startSynth,
         stopSynth,
         startRotationSound,
