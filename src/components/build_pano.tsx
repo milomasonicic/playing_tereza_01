@@ -4,6 +4,12 @@ import { useFrame } from "@react-three/fiber";
 import { useAudio } from "../audio/AudioProvider";
 import { useKeyboard } from "../providers/Keyboard";
 
+type SynthOscillatorType =
+  | "sine"
+  | "triangle"
+  | "square"
+  | "sawtooth";
+
 type PanoProps = {
   width?: number;
   height?: number;
@@ -12,6 +18,9 @@ type PanoProps = {
   shape?: "plane" | "circle";
   position1?: [number, number, number];
   pitch?: number;
+  frequency1?: number;
+  rythm: string;
+  osc: SynthOscillatorType
 };
 
 export default function PanoBuild({
@@ -22,6 +31,9 @@ export default function PanoBuild({
   shape = "plane",
   position1 = [0, 0, 0],
   pitch = 11,
+  osc =  "triangle",
+  frequency1= 10,
+  rythm= "1n"
 }: PanoProps) {
   const materialRef = useRef<THREE.MeshBasicMaterial>(null);
 
@@ -111,7 +123,7 @@ export default function PanoBuild({
       });
 
       // Noise START
-      audio?.startNoise1(pitch);
+      audio?.startNoise1(pitch, osc, frequency1, rythm);
     } else {
       // Video STOP
       video.pause();

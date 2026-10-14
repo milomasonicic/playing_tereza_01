@@ -1,13 +1,25 @@
 import { createContext, useContext, useEffect, useRef } from "react";
 import * as Tone from "tone";
 
+type SynthOscillatorType =
+  | "sine"
+  | "triangle"
+  | "square"
+  | "sawtooth";
+
+
 type AudioContextType = {
   playSound: (sound: string) => Promise<void>;
   startSound: (sound: string) => Promise<void>;
   stopSound: (sound: string) => void;
 
   startNoise: (pitch: number) => Promise<void>;
-  startNoise1: (pitch: number) => Promise<void>;
+  startNoise1: (
+    pitch: number,
+    osc: SynthOscillatorType,
+    frequency1: number,
+    rythm: string
+  ) => Promise<void>; 
   stopNoise: () => void;
 
   startSynth: (pitch: number) => Promise<void>;
@@ -299,12 +311,15 @@ const stopSound = (sound: string) => {
   // ==============================
 
 
-const startNoise1 = async (pitch: number) => {
+const startNoise1 = async (pitch: number,
+  osc: SynthOscillatorType,
+ frequency1: number, rythm: string
+) => {
   await Tone.start();
 
   const synth = new Tone.Synth({
     oscillator: {
-      type: "triangle",
+      type: osc,
     },
     envelope: {
       attack: 0.5,
@@ -315,8 +330,8 @@ const startNoise1 = async (pitch: number) => {
   }).toDestination();
 
   synth.triggerAttackRelease(
-    Tone.Frequency(15).transpose(pitch).toFrequency(),
-    "1n"
+    Tone.Frequency(frequency1).transpose(pitch).toFrequency(),
+    rythm
   );
 };
 

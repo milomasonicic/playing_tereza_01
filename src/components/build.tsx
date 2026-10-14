@@ -14,6 +14,9 @@ export default function Build()
                                 shape="circle"
                                 position1={[0, 0, 0]}
                                 pitch={35} 
+                                frequency1={5}
+                                rythm="1n"
+                                osc="triangle"
                                 ></PanoBuild>  
             <PanoBuild width={35}
                                 height={35} 
@@ -22,6 +25,9 @@ export default function Build()
                                 shape="circle"
                                 position1={[0, 0, 0]}
                                 pitch={15} 
+                                frequency1={11}
+                                rythm="16n"
+                                osc= "square"
                                 ></PanoBuild>  
 
             <PanoBuild width={35}
@@ -31,6 +37,9 @@ export default function Build()
                                 shape="circle"
                                 position1={[0, 0, 0]}
                                 pitch={3} 
+                                  frequency1={11}
+                                rythm="2n"
+                                osc="sawtooth"
                                 ></PanoBuild>                                           
           
         </>
