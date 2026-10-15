@@ -8,6 +8,7 @@ type Keys = {
   k: boolean;
   l: boolean;
   a: boolean;
+  d: boolean;
 };
 
 const KeyboardContext = createContext<Keys>({
@@ -17,7 +18,8 @@ const KeyboardContext = createContext<Keys>({
   j: false,
   k: false,
   l: false,
-  a: false
+  a: false,
+  d: false
 });
 
 export function KeyboardProvider({
@@ -32,10 +34,11 @@ export function KeyboardProvider({
     j: false,
     k: false,
     l: false,
-    a: false
+    a: false,
+    d: false
   });
 
-  const allowedKeys: (keyof Keys)[] = ["a","f", "g", "h", "j", "k","l" ];
+  const allowedKeys: (keyof Keys)[] = ["a","f", "g", "h", "j", "k","l","d"  ];
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
