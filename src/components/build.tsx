@@ -71,7 +71,7 @@ export default function Build()
                  <PanoBuild width={35}
                                 height={35} 
                                 triggerKey="d"
-                                videoName="build21aaa.webm"
+                                videoName="build23aaa.webm"
                                 shape="circle"
                                 position1={[0, 0, 0]}
                                 pitch={14} 
@@ -90,7 +90,59 @@ export default function Build()
                                 frequency1={21}
                                 rythm="2n"
                                 osc= "triangle"
-                                ></PanoBuild>                                
+                                ></PanoBuild>  
+
+                      <PanoBuild width={35}
+                                height={35} 
+                                triggerKey="s"
+                                videoName="build25aaaa.webm"
+                                shape="circle"
+                                position1={[0, 0, 0]}
+                                pitch={14} 
+                                frequency1={11}
+                                rythm="1n"
+                                osc= "triangle"
+                                ></PanoBuild>    
+
+
+                                  <PanoBuild width={35}
+                                height={35} 
+                                triggerKey="a"
+                                videoName="build41aaa.webm"
+                                shape="circle"
+                                position1={[0, 0, 0]}
+                                pitch={34} 
+                                frequency1={5}
+                                rythm="1n"
+                                osc= "triangle"
+                                ></PanoBuild>  
+
+                                   
+
+                                
+                                  <PanoBuild width={35}
+                                height={35} 
+                                triggerKey="q"
+                                videoName="build38aaa.webm"
+                                shape="circle"
+                                position1={[0, 0, 0]}
+                                pitch={34} 
+                                frequency1={5}
+                                rythm="1n"
+                                osc= "triangle"
+                                ></PanoBuild> 
+
+                                 <PanoBuild width={35}
+                                height={35} 
+                                triggerKey="w"
+                                videoName="build37aa.webm"
+                                shape="circle"
+                                position1={[0, 0, 0]}
+                                pitch={34} 
+                                frequency1={5}
+                                rythm="1n"
+                                osc= "triangle"
+                                ></PanoBuild>                                            
                                                                                
           
         </>
