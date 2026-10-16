@@ -7,10 +7,26 @@ import {
   useState,
 } from "react";
 
+
+type SynthOscillatorType =
+  | "sine"
+  | "triangle"
+  | "square"
+  | "sawtooth";
+
 export type Beat = {
   key: string;
   videoName: string;
   pitch: number;
+    // opciono
+  osc?: SynthOscillatorType;
+  frequency1?: number;
+  rythm?: string;
+
+  width?: number;
+  height?: number;
+  shape?: "plane" | "circle";
+  position1?: [number, number, number];
 };
 
 type BeatContextType = {
