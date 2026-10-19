@@ -5,9 +5,15 @@ import {
   useBeat,
 } from "../providers/BeatProvider";
 
+type SynthOscillatorType =
+  | "sine"
+  | "triangle"
+  | "square"
+  | "sawtooth";
+
 import PanoBuildBeat1 from "./beat_pano1";
 
-function St2() {
+function St22() {
   const { start, stop } = useBeat();
 
   useEffect(() => {
@@ -35,12 +41,12 @@ function St2() {
       height={35}
       triggerKey="l"
       videoName="build11.webm"
-      shape="circle"
+      shape="plane"
       position1={[0, 0, 0]}
-      pitch={35}
-      frequency1={5}
+      pitch={1}
+      frequency1={15}
       rythm="1n"
-      osc="triangle"
+      osc="sine"
     />
   );
 }
@@ -48,41 +54,65 @@ function St2() {
 export default function Build2() {
   return (
     <BeatProvider
-      bpm={338}
+      bpm={108}
       pattern={[
         {
           key: "l",
-          videoName: "a.webm",
-          pitch: 35,
+          videoName: "m126aa.webm",
+          pitch: 1,
+          osc: "sawtooth", 
+          frequency1:35,
+          rythm:"32n",
+          width:40,
+          height:40,
+          shape:"plane",
+          position1:[0, 0, 0] 
         },
+
         {
           key: "l",
-          videoName: "m103aa.webm",
-          pitch: 20,
+          videoName: "p100.webm",
+          pitch: 11,
+          osc: "square", 
+          frequency1:35,
+          rythm:"32n",
+          width:40,
+          height:40,
+          shape:"plane",
+          position1:[0, 0, 0] 
         },
+
         {
           key: "l",
-          videoName: "004.webm",
-          pitch: 5,
+          videoName: "p100.webm",
+          pitch: 11,
+          osc: "triangle", 
+          frequency1:111,
+          rythm:"32n",
+          width:40,
+          height:40,
+          shape:"plane",
+          position1:[0, 0, 0] 
         },
+
         {
           key: "l",
-          videoName: "a.webm",
-          pitch: 35,
+          videoName: "p100.webm",
+          pitch: 31,
+          osc: "sawtooth", 
+          frequency1:21,
+          rythm:"16n",
+          width:40,
+          height:40,
+          shape:"plane",
+          position1:[0, 0, 0] 
         },
-        {
-          key: "l",
-          videoName: "m103aa.webm",
-          pitch: 20,
-        },
-        {
-          key: "l",
-          videoName: "004.webm",
-          pitch: 5,
-        },
+
+        
+       
       ]}
     >
-      <St2 />
+      <St22 />
     </BeatProvider>
   );
 }

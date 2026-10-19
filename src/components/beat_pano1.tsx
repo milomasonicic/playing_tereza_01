@@ -21,8 +21,8 @@ type PanoProps = {
   position1?: [number, number, number];
   pitch?: number;
   frequency1?: number;
-  rythm: string;
-  osc: SynthOscillatorType;
+  rythm?: string;
+  osc?: SynthOscillatorType;
 };
 
 type VideoEntry = {
@@ -45,14 +45,6 @@ export default function PanoBuildBeat1({
   const materialRef =
     useRef<THREE.MeshBasicMaterial>(null);
 
-  /*
-   * Svaki video postoji samo jednom.
-   *
-   * videoName -> {
-   *   video,
-   *   texture
-   * }
-   */
   const videosRef =
     useRef<Map<string, VideoEntry>>(new Map());
 
@@ -68,42 +60,40 @@ export default function PanoBuildBeat1({
     beatIndex,
   } = useBeat();
 
-  // =========================================
+  // =====================================================
   // KEYBOARD
-  // =========================================
+  // =====================================================
 
   const keyboardPressed =
     keys[
       triggerKey.toLowerCase() as keyof typeof keys
     ];
 
-  // =========================================
-  // BEAT
-  // =========================================
+  // =====================================================
+  // BEAT ACTIVE
+  // =====================================================
 
-  /*
-   * Beat je aktivan samo ako:
-   *
-   * 1. BeatProvider radi
-   * 2. postoji currentBeat
-   * 3. key beata odgovara ovom Pano-u
-   */
   const beatActive =
     running &&
     currentBeat !== null &&
     currentBeat.key.toLowerCase() ===
       triggerKey.toLowerCase();
 
+  // =====================================================
+  // ACTIVE BEAT VALUES
+  // =====================================================
+
   /*
-   * Ako beat nije aktivan koristimo props.
+   * Kada beat radi:
    *
-   * Ako beat jeste aktivan:
+   * currentBeat ima prednost.
    *
-   * currentBeat.videoName
-   * currentBeat.pitch
+   * Ako neka vrednost nije definisana u beat-u,
+   * koristi se vrednost iz Pano props-a.
    */
+
   const activeVideo =
-    beatActive && currentBeat
+    beatActive && currentBeat?.videoName
       ? currentBeat.videoName
       : videoName;
 
@@ -112,37 +102,73 @@ export default function PanoBuildBeat1({
       ? currentBeat.pitch
       : pitch;
 
-  /*
-   * Ovo kontroliše opacity.
-   *
-   * Keyboard ili beat mogu da aktiviraju pano.
-   */
+  const activeOsc =
+    beatActive && currentBeat?.osc !== undefined
+      ? currentBeat.osc
+      : osc;
+
+  const activeFrequency =
+    beatActive &&
+    currentBeat?.frequency1 !== undefined
+      ? currentBeat.frequency1
+      : frequency1;
+
+  const activeRythm =
+    beatActive && currentBeat?.rythm !== undefined
+      ? currentBeat.rythm
+      : rythm;
+
+  const activeWidth =
+    beatActive &&
+    currentBeat?.width !== undefined
+      ? currentBeat.width
+      : width;
+
+  const activeHeight =
+    beatActive &&
+    currentBeat?.height !== undefined
+      ? currentBeat.height
+      : height;
+
+  const activeShape =
+    beatActive &&
+    currentBeat?.shape !== undefined
+      ? currentBeat.shape
+      : shape;
+
+  const activePosition =
+    beatActive &&
+    currentBeat?.position1 !== undefined
+      ? currentBeat.position1
+      : position1;
+
+  // =====================================================
+  // PRESSED
+  // =====================================================
+
   const isPressed =
     keyboardPressed || beatActive;
 
-  // =========================================
+  // =====================================================
   // CREATE / CACHE VIDEOS
-  // =========================================
+  // =====================================================
 
   useEffect(() => {
     const names = new Set<string>();
 
     /*
-     * Default video ovog Pano-a
+     * Default video
      */
     names.add(videoName);
 
     /*
-     * Video koji trenutni beat koristi
+     * Trenutni beat video
      */
     if (currentBeat?.videoName) {
       names.add(currentBeat.videoName);
     }
 
     for (const name of names) {
-      /*
-       * Ako već postoji, ništa ne radimo.
-       */
       if (videosRef.current.has(name)) {
         continue;
       }
@@ -176,23 +202,15 @@ export default function PanoBuildBeat1({
         texture: videoTexture,
       });
     }
-
-    return () => {};
   }, [
     videoName,
     currentBeat?.videoName,
   ]);
 
-  // =========================================
+  // =====================================================
   // ACTIVE TEXTURE
-  // =========================================
+  // =====================================================
 
-  /*
-   * Kada BeatProvider promeni videoName,
-   * samo prebacujemo texture.
-   *
-   * Ne pravimo novi video element.
-   */
   useEffect(() => {
     const entry =
       videosRef.current.get(activeVideo);
@@ -204,14 +222,10 @@ export default function PanoBuildBeat1({
     setTexture(entry.texture);
   }, [activeVideo]);
 
-  // =========================================
+  // =====================================================
   // BEAT PLAYBACK
-  // =========================================
+  // =====================================================
 
-  /*
-   * Ovo se izvršava kada BeatProvider
-   * prebaci na novi beat.
-   */
   useEffect(() => {
     if (!beatActive || !currentBeat) {
       return;
@@ -234,24 +248,34 @@ export default function PanoBuildBeat1({
     const video = entry.video;
 
     console.log(
-      "BUILD BEAT VIDEO PLAY:",
-      currentBeat.videoName,
-      "pitch:",
-      currentBeat.pitch
+      "BUILD BEAT:",
+      {
+        video: activeVideo,
+        pitch: activePitch,
+        osc: activeOsc,
+        frequency: activeFrequency,
+        rythm: activeRythm,
+        width: activeWidth,
+        height: activeHeight,
+        shape: activeShape,
+        position: activePosition,
+      }
     );
 
-    /*
-     * Pauziramo druge videe.
-     */
+    // -------------------------------------------------
+    // STOP OTHER VIDEOS
+    // -------------------------------------------------
+
     for (const [name, other] of videosRef.current) {
       if (name !== currentBeat.videoName) {
         other.video.pause();
       }
     }
 
-    /*
-     * Novi beat počinje od početka.
-     */
+    // -------------------------------------------------
+    // PLAY CURRENT VIDEO
+    // -------------------------------------------------
+
     video.currentTime = 0;
 
     const playPromise =
@@ -259,10 +283,6 @@ export default function PanoBuildBeat1({
 
     if (playPromise !== undefined) {
       playPromise.catch((error) => {
-        /*
-         * AbortError može da nastane kada
-         * provider vrlo brzo promeni beat.
-         */
         if (error?.name !== "AbortError") {
           console.error(
             "VIDEO PLAY ERROR:",
@@ -273,39 +293,42 @@ export default function PanoBuildBeat1({
       });
     }
 
-    /*
-     * BITNO:
-     *
-     * pitch dolazi iz BeatProvider-a.
-     *
-     * osc / frequency1 / rythm dolaze
-     * iz ovog PanoBuildBeat1 instance-a.
-     */
+    // -------------------------------------------------
+    // AUDIO
+    // -------------------------------------------------
+
     audio?.startNoise1(
-      currentBeat.pitch,
-      osc,
-      frequency1,
-      rythm
+      activePitch,
+      activeOsc,
+      activeFrequency,
+      activeRythm
     );
   }, [
     beatIndex,
     beatActive,
     currentBeat,
     audio,
-    osc,
-    frequency1,
-    rythm,
+
+    activeVideo,
+    activePitch,
+    activeOsc,
+    activeFrequency,
+    activeRythm,
+
+    activeWidth,
+    activeHeight,
+    activeShape,
+    activePosition,
   ]);
 
-  // =========================================
+  // =====================================================
   // KEYBOARD PLAYBACK
-  // =========================================
+  // =====================================================
 
   useEffect(() => {
     /*
-     * Ako BeatProvider trenutno kontroliše
-     * ovaj Pano, keyboard ne sme da preuzme
-     * kontrolu.
+     * Ako beat kontroliše Pano,
+     * keyboard ne sme da preuzme kontrolu.
      */
     if (beatActive) {
       return;
@@ -321,9 +344,6 @@ export default function PanoBuildBeat1({
     const video = entry.video;
 
     if (keyboardPressed) {
-      /*
-       * Keyboard playback počinje od početka.
-       */
       video.currentTime = 0;
 
       video.play().catch((error) => {
@@ -357,9 +377,9 @@ export default function PanoBuildBeat1({
     audio,
   ]);
 
-  // =========================================
+  // =====================================================
   // CLEANUP
-  // =========================================
+  // =====================================================
 
   useEffect(() => {
     return () => {
@@ -379,9 +399,9 @@ export default function PanoBuildBeat1({
     };
   }, []);
 
-  // =========================================
+  // =====================================================
   // FADE
-  // =========================================
+  // =====================================================
 
   useFrame((_, delta) => {
     if (!materialRef.current) {
@@ -400,9 +420,9 @@ export default function PanoBuildBeat1({
       );
   });
 
-  // =========================================
+  // =====================================================
   // RENDER
-  // =========================================
+  // =====================================================
 
   if (!texture) {
     return null;
@@ -410,20 +430,26 @@ export default function PanoBuildBeat1({
 
   return (
     <mesh
-      position={position1}
+      position={activePosition}
       rotation={[
         THREE.MathUtils.degToRad(-21.8),
         0,
         0,
       ]}
     >
-      {shape === "circle" ? (
+      {activeShape === "circle" ? (
         <circleGeometry
-          args={[width / 2, 64]}
+          args={[
+            activeWidth / 2,
+            64,
+          ]}
         />
       ) : (
         <planeGeometry
-          args={[width, height]}
+          args={[
+            activeWidth,
+            activeHeight,
+          ]}
         />
       )}
 
