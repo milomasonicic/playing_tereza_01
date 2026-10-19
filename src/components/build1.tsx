@@ -54,11 +54,11 @@ function St22() {
 export default function Build2() {
   return (
     <BeatProvider
-      bpm={108}
+      bpm={138}
       pattern={[
         {
           key: "l",
-          videoName: "m126aa.webm",
+          videoName: "mag1.webm",
           pitch: 1,
           osc: "sawtooth", 
           frequency1:35,
@@ -71,7 +71,7 @@ export default function Build2() {
 
         {
           key: "l",
-          videoName: "p100.webm",
+          videoName: "mag2.webm",
           pitch: 11,
           osc: "square", 
           frequency1:35,
@@ -107,6 +107,8 @@ export default function Build2() {
           shape:"plane",
           position1:[0, 0, 0] 
         },
+        
+
 
         
        
