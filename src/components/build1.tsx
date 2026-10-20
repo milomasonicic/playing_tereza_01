@@ -58,7 +58,7 @@ export default function Build2() {
       pattern={[
         {
           key: "l",
-          videoName: "mag1.webm",
+          videoName: "mag110a.webm",
           pitch: 1,
           osc: "sawtooth", 
           frequency1:35,
@@ -71,20 +71,7 @@ export default function Build2() {
 
         {
           key: "l",
-          videoName: "mag2.webm",
-          pitch: 11,
-          osc: "square", 
-          frequency1:35,
-          rythm:"32n",
-          width:40,
-          height:40,
-          shape:"plane",
-          position1:[0, 0, 0] 
-        },
-
-        {
-          key: "l",
-          videoName: "p100.webm",
+          videoName: "mag6.webm",
           pitch: 11,
           osc: "triangle", 
           frequency1:111,
@@ -97,7 +84,7 @@ export default function Build2() {
 
         {
           key: "l",
-          videoName: "p100.webm",
+          videoName: "mag7a.webm",
           pitch: 31,
           osc: "sawtooth", 
           frequency1:21,
@@ -107,7 +94,83 @@ export default function Build2() {
           shape:"plane",
           position1:[0, 0, 0] 
         },
-        
+        //novo
+        {
+          key: "l",
+          videoName: "mag110a.webm",
+          pitch: 1,
+          osc: "sawtooth", 
+          frequency1:35,
+          rythm:"32n",
+          width:40,
+          height:40,
+          shape:"plane",
+          position1:[0, 0, 0] 
+        },
+                {
+          key: "l",
+          videoName: "mag12a.webm",
+          pitch: 11,
+          osc: "square", 
+          frequency1:35,
+          rythm:"32n",
+          width:40,
+          height:40,
+          shape:"plane",
+          position1:[0, 0, 0] 
+        },
+               {
+          key: "l",
+          videoName: "mag11a.webm",
+          pitch: 11,
+          osc: "square", 
+          frequency1:35,
+          rythm:"16n",
+          width:40,
+          height:40,
+          shape:"plane",
+          position1:[0, 0, 0] 
+        },
+      {
+          key: "l",
+          videoName: "mag111a.webm",
+          pitch: 11,
+          osc: "square", 
+          frequency1:35,
+          rythm:"16n",
+          width:40,
+          height:40,
+          shape:"plane",
+          position1:[0, 0, 0] 
+        },
+        {
+          key: "l",
+          videoName: "mag113a.webm",
+          pitch: 11,
+          osc: "square", 
+          frequency1:35,
+          rythm:"8n",
+          width:40,
+          height:40,
+          shape:"plane",
+          position1:[0, 0, 0] 
+        }
+      /*
+         p100.webm
+      {
+          key: "l",
+          videoName: "mag6.webm",
+          pitch: 1,
+          osc: "sawtooth", 
+          frequency1:35,
+          rythm:"32n",
+          width:40,
+          height:40,
+          shape:"plane",
+          position1:[0, 0, 0] 
+        },*/
+      
+
 
 
         

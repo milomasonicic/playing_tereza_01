@@ -24,6 +24,7 @@ import St3 from "./components/st3";
 import StContent1 from "./components/st12";
 import Build from "./components/build";
 import Build2 from "./components/build1";
+import Build33 from "./components/build3";
 
 import {
   EffectComposer,
@@ -82,6 +83,7 @@ function SceneCanvas() {
             <Route path="/figura3" element={<StContent1 />} />
             <Route path="/build" element={<Build></Build>} />
             <Route path="/build1" element={<Build2></Build2>} />
+             <Route path="/build2" element={<Build33></Build33>} />
           </Routes>
 
         </KeyboardProvider>
