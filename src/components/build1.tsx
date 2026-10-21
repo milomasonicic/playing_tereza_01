@@ -154,8 +154,98 @@ export default function Build2() {
           height:40,
           shape:"plane",
           position1:[0, 0, 0] 
-        }
+        },
+      // novo
+      {
+          key: "l",
+          videoName: "mil31xx.webm",
+          pitch: 1,
+          osc: "sawtooth", 
+          frequency1:35,
+          rythm:"32n",
+          width:40,
+          height:40,
+          shape:"plane",
+          position1:[0, 0, 0] 
+        },
+        
+        {
+          key: "l",
+          videoName: "mil33xx.webm",
+          pitch: 11,
+          osc: "triangle", 
+          frequency1:111,
+          rythm:"32n",
+          width:40,
+          height:40,
+          shape:"plane",
+          position1:[0, 0, 0] 
+        },
+ 
+        {
+          key: "l",
+          videoName: "mil32xx.webm",
+          pitch: 31,
+          osc: "sawtooth", 
+          frequency1:21,
+          rythm:"16n",
+          width:40,
+          height:40,
+          shape:"plane",
+          position1:[0, 0, 0] 
+        },
+        {
+          key: "l",
+          videoName: "mil34xx.webm",
+          pitch: 1,
+          osc: "sawtooth", 
+          frequency1:35,
+          rythm:"32n",
+          width:40,
+          height:40,
+          shape:"plane",
+          position1:[0, 0, 0] 
+        },
+              {
+          key: "l",
+          videoName: "mil35xx.webm",
+          pitch: 11,
+          osc: "square", 
+          frequency1:35,
+          rythm:"32n",
+          width:40,
+          height:40,
+          shape:"plane",
+          position1:[0, 0, 0] 
+        },
+             {
+          key: "l",
+          videoName: "mil39xx.webm",
+          pitch: 11,
+          osc: "square", 
+          frequency1:35,
+          rythm:"16n",
+          width:40,
+          height:40,
+          shape:"plane",
+          position1:[0, 0, 0] 
+        },
+           {
+          key: "l",
+          videoName: "mil39xx.webm",
+          pitch: 11,
+          osc: "square", 
+          frequency1:35,
+          rythm:"32n",
+          width:40,
+          height:40,
+          shape:"plane",
+          position1:[0, 0, 0] 
+        },
       /*
+
+
+
          p100.webm
       {
           key: "l",

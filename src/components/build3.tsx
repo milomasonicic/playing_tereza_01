@@ -97,7 +97,7 @@ export default function Build33() {
         //novo
         {
           key: "l",
-          videoName: "mil3a.webm",
+          videoName: "mil2a.webm",
           pitch: 1,
           osc: "sawtooth", 
           frequency1:35,
@@ -154,7 +154,60 @@ export default function Build33() {
           height:40,
           shape:"plane",
           position1:[0, 0, 0] 
-        }
+        },
+        //novo
+             {
+          key: "l",
+          videoName: "mil27xx.webm",
+          pitch: 1,
+          osc: "sawtooth", 
+          frequency1:35,
+          rythm:"32n",
+          width:40,
+          height:40,
+          shape:"plane",
+          position1:[0, 0, 0] 
+        },  
+                {
+          key: "l",
+          videoName: "mil28xx.webm",
+          pitch: 11,
+          osc: "triangle", 
+          frequency1:111,
+          rythm:"32n",
+          width:40,
+          height:40,
+          shape:"plane",
+          position1:[0, 0, 0] 
+        },
+
+         {
+          key: "l",
+          videoName: "mil29xx.webm",
+          pitch: 31,
+          osc: "sawtooth", 
+          frequency1:21,
+          rythm:"16n",
+          width:40,
+          height:40,
+          shape:"plane",
+          position1:[0, 0, 0] 
+        },
+         {
+          key: "l",
+          videoName: "mil30xx.webm",
+          pitch: 1,
+          osc: "sawtooth", 
+          frequency1:35,
+          rythm:"32n",
+          width:40,
+          height:40,
+          shape:"plane",
+          position1:[0, 0, 0] 
+        },
+       
+       
+
       /*
          p100.webm
       {
