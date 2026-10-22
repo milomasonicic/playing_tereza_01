@@ -10,6 +10,9 @@ import { getDirectionNova1 } from "../function/getdirection";
 import { explode4 } from "../function/explode";
 import PanoPhoto1 from "./pano_03";
 
+import PanoBuildBeat1 from "./beat_pano1";
+
+
 
 
 export default function  Prvo1()
@@ -43,11 +46,43 @@ export default function  Prvo1()
         <PanoNoise width={35}
                         height={35} 
                         triggerKey="j"
-                        videoName="detail.webm"
+                        videoName="ginis5xx.webm"
+                        shape="circle"
+                        position1={[0, 0, 0]}
+                        pitch={46}
+                        ></PanoNoise>
+
+          <PanoNoise width={35}
+                        height={35} 
+                        triggerKey="h"
+                        videoName="ginis2axx.webm"
                         shape="circle"
                         position1={[0, 0, 0]}
                         pitch={16}
-                        ></PanoNoise>
+                        ></PanoNoise>   
+
+          <PanoNoise width={35}
+                        height={35} 
+                        triggerKey="g"
+                        videoName="ginis13xxa.webm"
+                        shape="circle"
+                        position1={[0, 0, 0]}
+                        pitch={39}
+                        ></PanoNoise> 
+
+           
+          <PanoNoise width={35}
+                        height={35} 
+                        triggerKey="f"
+                        videoName="ginis16axx.webm"
+                        shape="circle"
+                        position1={[0, 0, 0]}
+                        pitch={41}
+                        ></PanoNoise> 
+
+                                      
+
+                                     
 
         <PanoPhoto1 width={35}
                         height={35} 
