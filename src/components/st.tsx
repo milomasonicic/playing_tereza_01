@@ -8,40 +8,108 @@ import { getDirectionNova } from "../function/getdirection"
 import { getDirectionNova1 } from "../function/getdirection";
 import { explode4, explode3, explode6 } from "../function/explode"
 
+import PanoNoiseSample from "./pano_02_sample";
+
 export default function St11(){
 
     return(
         <>
+ 
+         <PanoNoiseSample width={45}
+                        height={45} 
+                        triggerKey="l"
+                        videoName="nmv4.webm"
+                        shape="plane"
+                        position1={[0, 0, 0]}
+                        sound="boze.wav"
+                        ></PanoNoiseSample>
 
         
-        <PanoNoise width={35}
-                        height={35} 
-                        triggerKey="h"
-                        videoName="ilikeit.webm"
+         <PanoNoiseSample width={45}
+                        height={45} 
+                        triggerKey="k"
+                        videoName="nmv6.webm"
                         shape="plane"
-                        position1={[-12, 0, 0]}
-                        pitch={40}
-                        ></PanoNoise>
-                            
-
-        <PanoNoise width={35}
-                        height={35} 
-                        triggerKey="l"
-                        videoName="jek.mp4"
-                        shape="plane"
-                        position1={[-27, 0, 0]}
-                        pitch={56}
-                        ></PanoNoise>
-
-         <PanoNoise width={35}
-                        height={35} 
-                        triggerKey="g"
-                        videoName="niz.webm"
-                        shape="circle"
                         position1={[0, 0, 0]}
-                        pitch={36}
-                        ></PanoNoise>
+                        sound="boze.wav"
+                        ></PanoNoiseSample> 
 
+           <PanoNoiseSample width={45}
+                        height={45} 
+                        triggerKey="j"
+                        videoName="nmv7.webm"
+                        shape="plane"
+                        position1={[0, 0, 0]}
+                        sound="boze.wav"
+                        ></PanoNoiseSample> 
+
+           <PanoNoiseSample width={45}
+                        height={45} 
+                        triggerKey="h"
+                        videoName="nmv8.webm"
+                        shape="plane"
+                        position1={[0, 0, 0]}
+                        sound="boze.wav"
+                        ></PanoNoiseSample>                                               
+            
+             <PanoNoiseSample width={45}
+                        height={45} 
+                        triggerKey="g"
+                        videoName="nmv10.webm"
+                        shape="plane"
+                        position1={[0, 0, 0]}
+                        sound="boze.wav"
+                        ></PanoNoiseSample>    
+
+                 <PanoNoiseSample width={45}
+                        height={45} 
+                        triggerKey="f"
+                        videoName="nmv12.webm"
+                        shape="plane"
+                        position1={[0, 0, 0]}
+                        sound="boze.wav"
+                        ></PanoNoiseSample>    
+
+                        
+                 <PanoNoiseSample width={45}
+                        height={45} 
+                        triggerKey="d"
+                        videoName="nmv16a.webm"
+                        shape="plane"
+                        position1={[0, 0, 0]}
+                        sound="boze.wav"
+                        ></PanoNoiseSample>        
+        
+                 <PanoNoiseSample width={45}
+                        height={45} 
+                        triggerKey="s"
+                        videoName="nmv18.webm"
+                        shape="plane"
+                        position1={[0, 0, 0]}
+                        sound="boze.wav"
+                        ></PanoNoiseSample>     
+
+                
+                 <PanoNoiseSample width={45}
+                        height={45} 
+                        triggerKey="a"
+                        videoName="nmv19.webm"
+                        shape="plane"
+                        position1={[0, 0, 0]}
+                        sound="boze.wav"
+                        ></PanoNoiseSample>          
+
+        </>
+    )
+}
+
+
+
+        /* nmv17a
+
+
+
+        
        <Sound22 triggerKey="s"
         position1={[-15, 0, 0]}
         sound = "wav (3).wav"
@@ -73,9 +141,8 @@ export default function St11(){
         >
         </Sound33>
 
- 
-        
-        <PanoNoise width={35}
+
+ <PanoNoise width={35}
                         height={35} 
                         triggerKey="k"
                         videoName="jek.mp4"
@@ -84,10 +151,32 @@ export default function St11(){
                         pitch={30}
                         ></PanoNoise>
 
-        
+        <PanoNoise width={45}
+                        height={45} 
+                        triggerKey="h"
+                        videoName="nmv2.webm"
+                        shape="plane"
+                        position1={[0, 0, 0]}
+                        pitch={40}
+                        ></PanoNoise>
+                            
 
-        </>
-    )
-}
+        <PanoNoise width={35}
+                        height={35} 
+                        triggerKey="a"
+                        videoName="jek.mp4"
+                        shape="plane"
+                        position1={[-27, 0, 0]}
+                        pitch={56}
+                        ></PanoNoise>
 
+         <PanoNoise width={35}
+                        height={35} 
+                        triggerKey="g"
+                        videoName="niz.webm"
+                        shape="circle"
+                        position1={[0, 0, 0]}
+                        pitch={36}
+                        ></PanoNoise>
+                        */
 
