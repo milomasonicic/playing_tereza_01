@@ -21,7 +21,7 @@ export default function St11(){
                         videoName="nmv4.webm"
                         shape="plane"
                         position1={[0, 0, 0]}
-                        sound="boze.wav"
+                        sound="cave1.wav"
                         ></PanoNoiseSample>
 
         
@@ -31,7 +31,7 @@ export default function St11(){
                         videoName="nmv6.webm"
                         shape="plane"
                         position1={[0, 0, 0]}
-                        sound="boze.wav"
+                        sound="cave2.wav"
                         ></PanoNoiseSample> 
 
            <PanoNoiseSample width={45}
@@ -40,7 +40,7 @@ export default function St11(){
                         videoName="nmv7.webm"
                         shape="plane"
                         position1={[0, 0, 0]}
-                        sound="boze.wav"
+                        sound="cave4.wav"
                         ></PanoNoiseSample> 
 
            <PanoNoiseSample width={45}
@@ -49,7 +49,7 @@ export default function St11(){
                         videoName="nmv8.webm"
                         shape="plane"
                         position1={[0, 0, 0]}
-                        sound="boze.wav"
+                        sound="cave8.wav"
                         ></PanoNoiseSample>                                               
             
              <PanoNoiseSample width={45}
@@ -67,7 +67,7 @@ export default function St11(){
                         videoName="nmv12.webm"
                         shape="plane"
                         position1={[0, 0, 0]}
-                        sound="boze.wav"
+                        sound="cave4.wav"
                         ></PanoNoiseSample>    
 
                         
@@ -77,7 +77,7 @@ export default function St11(){
                         videoName="nmv16a.webm"
                         shape="plane"
                         position1={[0, 0, 0]}
-                        sound="boze.wav"
+                        sound="cave5.wav"
                         ></PanoNoiseSample>        
         
                  <PanoNoiseSample width={45}
@@ -86,7 +86,7 @@ export default function St11(){
                         videoName="nmv18.webm"
                         shape="plane"
                         position1={[0, 0, 0]}
-                        sound="boze.wav"
+                        sound="cave6.wav"
                         ></PanoNoiseSample>     
 
                 
@@ -96,7 +96,7 @@ export default function St11(){
                         videoName="nmv19.webm"
                         shape="plane"
                         position1={[0, 0, 0]}
-                        sound="boze.wav"
+                        sound="cave7.wav"
                         ></PanoNoiseSample>          
 
         </>

@@ -55,7 +55,7 @@ export default function  Prvo1()
           <PanoNoise width={35}
                         height={35} 
                         triggerKey="h"
-                        videoName="ginis2axx.webm"
+                        videoName="odlk.mp4"
                         shape="circle"
                         position1={[0, 0, 0]}
                         pitch={16}
