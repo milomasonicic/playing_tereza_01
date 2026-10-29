@@ -21,18 +21,47 @@ export default function St11(){
                         videoName="nmv4.webm"
                         shape="plane"
                         position1={[0, 0, 0]}
-                        sound="cave1.wav"
+                        sound="mjesec11.mp3"
                         ></PanoNoiseSample>
 
-        
-         <PanoNoiseSample width={45}
+               <PanoNoiseSample width={45}
                         height={45} 
                         triggerKey="k"
+                        videoName="nmv16a.webm"
+                        shape="plane"
+                        position1={[0, 0, 0]}
+                        sound="mjesec.mp3"
+                        ></PanoNoiseSample>  
+
+                         <PanoNoiseSample width={45}
+                        height={45} 
+                        triggerKey="j"
+                        videoName="isk1.webm"
+                        shape="plane"
+                        position1={[0, 0, 0]}
+                        sound="centar11.wav"
+                        ></PanoNoiseSample>  
+
+                         <PanoNoiseSample width={45}
+                        height={45} 
+                        triggerKey="a"
                         videoName="nmv6.webm"
                         shape="plane"
                         position1={[0, 0, 0]}
-                        sound="cave2.wav"
-                        ></PanoNoiseSample> 
+                        sound="centar22.wav"
+                        ></PanoNoiseSample>            
+      
+
+        </>
+    )
+}
+
+
+/*
+
+
+      
+        
 
            <PanoNoiseSample width={45}
                         height={45} 
@@ -58,7 +87,7 @@ export default function St11(){
                         videoName="nmv10.webm"
                         shape="plane"
                         position1={[0, 0, 0]}
-                        sound="boze.wav"
+                        sound="centar11.wav"
                         ></PanoNoiseSample>    
 
                  <PanoNoiseSample width={45}
@@ -67,18 +96,11 @@ export default function St11(){
                         videoName="nmv12.webm"
                         shape="plane"
                         position1={[0, 0, 0]}
-                        sound="cave4.wav"
+                        sound="centar2.wav"
                         ></PanoNoiseSample>    
 
                         
-                 <PanoNoiseSample width={45}
-                        height={45} 
-                        triggerKey="d"
-                        videoName="nmv16a.webm"
-                        shape="plane"
-                        position1={[0, 0, 0]}
-                        sound="cave5.wav"
-                        ></PanoNoiseSample>        
+                     
         
                  <PanoNoiseSample width={45}
                         height={45} 
@@ -86,7 +108,7 @@ export default function St11(){
                         videoName="nmv18.webm"
                         shape="plane"
                         position1={[0, 0, 0]}
-                        sound="cave6.wav"
+                        sound="centar5.wav"
                         ></PanoNoiseSample>     
 
                 
@@ -96,12 +118,12 @@ export default function St11(){
                         videoName="nmv19.webm"
                         shape="plane"
                         position1={[0, 0, 0]}
-                        sound="cave7.wav"
-                        ></PanoNoiseSample>          
+                        sound="imate1.wav"
+                        ></PanoNoiseSample>  
+                        
 
-        </>
-    )
-}
+*/
+
 
 
 

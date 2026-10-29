@@ -80,7 +80,7 @@ export default function  Prvo1()
                         pitch={41}
                         ></PanoNoise> 
 
-                                      
+          
 
                                      
 

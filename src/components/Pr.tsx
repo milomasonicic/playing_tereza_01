@@ -119,7 +119,16 @@ export default function Prvo11(){
                         rythm="16n"
                         osc="sawtooth"
                         ></PanoBuild>                                                               
-
+         
+          <PanoNoise width={35}
+                                 height={35} 
+                                 triggerKey="a"
+                                 videoName="o11.mp4"
+                                 shape="plane"
+                                 position1={[0, 0, 0]}
+                                 pitch={11}
+                                 ></PanoNoise> 
+                                               
 
 
                
@@ -132,7 +141,7 @@ export default function Prvo11(){
         
                 <PanoPhoto1 width={35}
                                 height={35} 
-                                triggerKey="a"
+                                triggerKey="d"
                                 imageName="dark.png"
                                 shape="plane"
                                 position1={[0, 0, 0]}

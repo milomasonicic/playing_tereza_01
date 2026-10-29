@@ -54,7 +54,7 @@ function St22() {
 export default function Build33() {
   return (
     <BeatProvider
-      bpm={108}
+      bpm={228}
       pattern={[
         {
           key: "l",
