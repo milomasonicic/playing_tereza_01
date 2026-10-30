@@ -42,6 +42,26 @@ export default function St11(){
                         sound="centar11.wav"
                         ></PanoNoiseSample>  
 
+                          <PanoNoiseSample width={45}
+                        height={45} 
+                        triggerKey="h"
+                        videoName="isk33.webm"
+                        shape="plane"
+                        position1={[0, 0, 0]}
+                        sound="centar65.wav"
+                        ></PanoNoiseSample>  
+
+                           <PanoNoiseSample width={45}
+                        height={45} 
+                        triggerKey="g"
+                        videoName="isk5a.webm"
+                        shape="plane"
+                        position1={[0, 0, 0]}
+                        sound="centar3012.wav"
+                        ></PanoNoiseSample>  
+
+                     
+
                          <PanoNoiseSample width={45}
                         height={45} 
                         triggerKey="a"
