@@ -62,6 +62,33 @@ export default function St11(){
 
                      
 
+                        <PanoNoiseSample width={45}
+                        height={45} 
+                        triggerKey="f"
+                        videoName="sajam.webm"
+                        shape="plane"
+                        position1={[0, 0, 0]}
+                        sound="detail1.wav"
+                        ></PanoNoiseSample>  
+
+                           <PanoNoiseSample width={45}
+                        height={45} 
+                        triggerKey="d"
+                        videoName="sajam11.webm"
+                        shape="plane"
+                        position1={[0, 0, 0]}
+                        sound="centar22.wav"
+                        ></PanoNoiseSample>  
+
+                         <PanoNoiseSample width={45}
+                        height={45} 
+                        triggerKey="s"
+                        videoName="sajam22.webm"
+                        shape="plane"
+                        position1={[0, 0, 0]}
+                        sound="centar22.wav"
+                        ></PanoNoiseSample>  
+
                          <PanoNoiseSample width={45}
                         height={45} 
                         triggerKey="a"
@@ -69,7 +96,9 @@ export default function St11(){
                         shape="plane"
                         position1={[0, 0, 0]}
                         sound="centar22.wav"
-                        ></PanoNoiseSample>            
+                        ></PanoNoiseSample>      
+
+                             
       
 
         </>
