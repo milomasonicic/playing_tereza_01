@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import PanoPhoto1 from "./pano_03";
+
 
 import PanoBeat from "./beat";
 import {
@@ -44,6 +46,9 @@ function St11011Content() {
 
 export default function St11011() {
   return (
+
+   
+
     <BeatProvider
       bpm={58}
       pattern={[
@@ -101,8 +106,17 @@ export default function St11011() {
           pitch: 15,
         },*/
       ]}
+
     >
       <St11011Content />
+      
+        <PanoPhoto1 width={35}
+                        height={35} 
+                        triggerKey="w"
+                        imageName="dark.png"
+                        shape="plane"
+                        position1={[0, 0, 0]}
+                        pitch={16}></PanoPhoto1>  
     </BeatProvider>
   );
 }

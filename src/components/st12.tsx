@@ -11,26 +11,13 @@ export default function StContent1() {
         width={45}
         height={45}
         triggerKey="k"
-        videoName="o101.webm"
+        videoName="olv3.webm"
         shape="plane"
         position1={[0, 0, 0]}
         pitch={30}
-        speed={21}
+        speed={1}
       />
 
-         <PanoNoiseRotate
-        width={45}
-        height={45}
-        triggerKey="k"
-        videoName="p117cc.webm"
-        shape="plane"
-        position1={[0, 0, 0]}
-        pitch={30}
-        speed={221}
-      />
-
-
-    
 
     
     </>

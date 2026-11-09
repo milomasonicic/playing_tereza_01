@@ -26,6 +26,7 @@ import Build from "./components/build";
 import Build2 from "./components/build1";
 import Build33 from "./components/build3";
 import Piano from "./components/Piano";
+import Morning from "./components/morning";
 
 import {
   EffectComposer,
@@ -86,6 +87,7 @@ function SceneCanvas() {
             <Route path="/build1" element={<Build2></Build2>} />
             <Route path="/build2" element={<Build33></Build33>} />
             <Route path="/piano" element={<Piano></Piano>} />
+            <Route path="/morning" element={<Morning></Morning>} />
           </Routes>
 
         </KeyboardProvider>

@@ -1,9 +1,8 @@
-
 import Sound from "./Sound1";
 import PanoNoise from "./pano_02";
 import PanoPhoto1 from "./pano_03";
 import PanoBuild from "./build_pano"
-
+import Sound22 from "./Sound2";
 
 
 export default function Prvo11(){
@@ -131,13 +130,12 @@ export default function Prvo11(){
                                                
 
 
-               
-
-        <Sound triggerKey="f"
-        position1={[0, 0, 0]}
+               <Sound22 triggerKey="f"
+        position1={[-15, 0, 0]}
         sound = "wav (3).wav"
-        ></Sound>
-
+        color1={[0, 0, 1]}
+        color2={[0, 0.2, 0.9]}>
+        </Sound22>   
         
                 <PanoPhoto1 width={35}
                                 height={35} 

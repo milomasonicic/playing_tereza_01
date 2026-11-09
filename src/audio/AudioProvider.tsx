@@ -29,6 +29,10 @@ type AudioContextType = {
   startRotationSound: (speed: number) => Promise<void>;
   setRotationSound: (speed: number) => void;
   stopRotationSound: () => void;
+
+    // Ambient Pads
+  startPad: (notes: string[]) => Promise<void>;
+  stopPad: () => void;
 };
 
 const AudioContext = createContext<AudioContextType | null>(null);
@@ -57,6 +61,17 @@ export function AudioProvider({
   // ==============================
   // CREATE AUDIO
   // ==============================
+
+  // ==============================
+// AMBIENT PAD
+// ==============================
+
+const padRef = useRef<Tone.PolySynth | null>(null);
+const padFilterRef = useRef<Tone.Filter | null>(null);
+const padChorusRef = useRef<Tone.Chorus | null>(null);
+const padReverbRef = useRef<Tone.Reverb | null>(null);
+
+const activeNotesRef = useRef<string[]>([]);
 
   useEffect(() => {
     // ------------------------------
@@ -340,9 +355,109 @@ const startNoise1 = async (pitch: number,
   // PROVIDER
   // ==============================
 
+  //PAD
+  // ==============================
+// START PAD
+// ==============================
+
+// ==============================
+// INIT PAD
+// ==============================
+
+const initPad = async () => {
+  if (padRef.current) return;
+
+  const synth = new Tone.PolySynth(Tone.Synth, {
+   oscillator: {
+    type: "fatsawtooth",
+    count: 3,
+    spread: 18,
+  },
+
+    envelope: {
+      attack: 5,
+      decay: 3,
+      sustain: 1,
+      release: 22,
+    },
+    volume: 12,
+  });
+
+  const filter = new Tone.Filter({
+    frequency: 1400,
+    type: "lowpass",
+    rolloff: -24,
+  });
+
+  const chorus = new Tone.Chorus({
+    frequency: 0.08,
+    delayTime: 5,
+    depth: 0.3,
+    wet: 0.3,
+  }).start();
+
+  const reverb = new Tone.Reverb({
+    decay: 16,
+    wet: 0.55,
+  });
+
+  await reverb.generate();
+
+  synth.chain(
+    filter,
+    chorus,
+    reverb,
+    Tone.Destination
+  );
+
+  padRef.current = synth;
+  padFilterRef.current = filter;
+  padChorusRef.current = chorus;
+  padReverbRef.current = reverb;
+};
+
+
+const startPad = async (notes: string[]) => {
+  await Tone.start();
+
+  if (!padRef.current) {
+    await initPad();
+  }
+
+  const pad = padRef.current;
+
+  if (!pad) return;
+
+  // Release previous notes
+  if (activeNotesRef.current.length > 0) {
+    pad.triggerRelease(activeNotesRef.current);
+  }
+
+  // Play new chord
+  pad.triggerAttack(notes);
+
+  activeNotesRef.current = notes;
+};
+// ==============================
+// STOP PAD
+// ==============================
+
+const stopPad = () => {
+  const pad = padRef.current;
+
+  if (!pad) return;
+
+  if (activeNotesRef.current.length > 0) {
+    pad.triggerRelease(activeNotesRef.current);
+    activeNotesRef.current = [];
+  }
+};
+
   return (
     <AudioContext.Provider
       value={{
+        startPad,
+        stopPad,
         playSound,
         startSound,
         stopSound,
